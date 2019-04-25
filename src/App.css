@@ -37,8 +37,8 @@
   display: flex;
 }
 
-.margin-top {
-  margin-top: 1rem;
+.extra-margin-top {
+  margin-top: 2rem;
 }
 
 .space-between {
@@ -78,4 +78,8 @@
   display: flex;
   justify-content: space-between;
   margin: .75rem
+}
+
+.form-field {
+  margin-top: 1rem
 }

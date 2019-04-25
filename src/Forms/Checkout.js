@@ -8,28 +8,47 @@ import PersonalDetails from "../PersonalDetails";
 import Dates from "./Dates";
 import Payment from "./Payment";
 import SignUpSuccess from "../SignUpSuccess";
+import validate from "../validate";
 
 class Checkout extends React.Component {
   state = {
     activeStep: 0,
     formControls: {
       startDate: {
-        value: '2018-07-01'
+        value: '2018-07-01',
+        valid: true,
+        touched: false,
+        errorMessage: 'start date is requried'
       },
       endDate: {
-        value: '2018-07-05'
+        value: '2018-07-05',
+        valid: true,
+        touched: false,
+        errorMessage: 'end date is required'
       },
       firstName: {
         value: '',
+        valid: false,
+        touched: false,
+        errorMessage: 'first name is required'
       },
       lastName: {
         value: '',
+        valid: false,
+        touched: false,
+        errorMessage: 'last name is required'
       },
       email: {
         value: '',
+        valid: false,
+        touched: false,
+        errorMessage: 'email is required'
       },
       gender: {
         value: '',
+        valid: false,
+        touched: false,
+        errorMessage: 'gender is required'
       }
     }
   };
@@ -38,13 +57,27 @@ class Checkout extends React.Component {
     const name = e.target.name;
     const value = e.target.value;
 
-    const updatedFormControls = { ...this.state.formControls }
-    const updatedElement = { ...this.state.formControls[name] }
+    const updatedFormControls = { ...this.state.formControls };
+    const updatedElement = { ...this.state.formControls[name] };
 
     updatedElement.value = value;
+    updatedElement.valid = value !== '';
     updatedFormControls[name] = updatedElement;
 
-    this.setState({formControls: updatedFormControls})
+    this.setState({formControls: updatedFormControls});
+  }
+
+  handleBlur = e => {
+    const name = e.target.name;
+    console.log("name: ", name);
+
+    const updatedFormControls = { ...this.state.formControls };
+    const updatedElement = { ...this.state.formControls[name] };
+
+    updatedElement.touched = true;
+    updatedFormControls[name] = updatedElement;
+
+    this.setState({formControls: updatedFormControls});
   }
 
   handleNext = () => {
@@ -74,6 +107,7 @@ class Checkout extends React.Component {
           startDate={formControls.startDate} 
           endDate={formControls.endDate} 
           handleChange={this.handleChange}
+          handleBlur={this.handleBlur}
         />;
       case 1:
         return <PersonalDetails 
@@ -82,6 +116,7 @@ class Checkout extends React.Component {
           email={formControls.email}
           gender={formControls.gender}
           handleChange={this.handleChange}
+          handleBlur={this.handleBlur}
         />;
       case 2:
         return <Payment {...formControls}/>;
