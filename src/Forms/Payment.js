@@ -30,6 +30,13 @@ class Payment extends React.Component {
   }
 }
 
-const getDay = day => moment(day).date();
+const getDay = day => {
+  if (day !== '') {
+    return moment(day).date();
+  } else {
+    return ''
+  }
+}
+
 
 export default Payment;
