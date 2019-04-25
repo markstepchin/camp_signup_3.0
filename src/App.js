@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Checkout from "./Checkout";
+import Details from "./Details";
 import './App.css';
 
 class App extends Component {
+  state = {
+    values: ''
+  }
+
+  displayState = values => {
+    this.setState({values: JSON.stringify(values)});
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+        <Switch>
+          <Route path="/Checkout" component={() => <Checkout />}/>
+          <Route path="/" component={() => <Details />} />
+        </Switch>
+      </Router>
     );
   }
 }
