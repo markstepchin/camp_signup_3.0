@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 
 const COST_PER_DAY = 25;
 
-const DateForm = ({startDate, endDate, handleChange}) => (
+const Dates = ({startDate, endDate, handleChange}) => (
   <React.Fragment>
     <form className="form-spacer">
       <Typography variant="h6" gutterBottom>
@@ -12,7 +12,6 @@ const DateForm = ({startDate, endDate, handleChange}) => (
       </Typography>
       <div className="space-between">
         <TextField
-          id="date"
           label="Start"
           type="date"
           value={startDate.value}
@@ -26,7 +25,6 @@ const DateForm = ({startDate, endDate, handleChange}) => (
         />
         <span className="spacer"/>
         <TextField
-          id="date"
           label="End"
           type="date"
           value={endDate.value}
@@ -54,4 +52,4 @@ const calcNumDays = (startDateString, endDateString) => {
 
 const calcCost = (numDays, costPerDay) => numDays * costPerDay + COST_PER_DAY;
 
-export default DateForm;
+export default Dates;
