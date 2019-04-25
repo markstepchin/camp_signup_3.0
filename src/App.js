@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Checkout from "./Checkout";
+import Checkout from "./Forms/Checkout";
 import Details from "./Details";
 import './App.css';
 

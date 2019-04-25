@@ -1,7 +1,7 @@
 import React from "react";
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import { calcCost } from "./Utils";
+import { calcCost } from "../Utils";
 
 const Dates = ({startDate, endDate, handleChange}) => (
   <React.Fragment>

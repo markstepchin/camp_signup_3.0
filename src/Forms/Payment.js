@@ -1,7 +1,7 @@
 import React from "react";
 import Typography from '@material-ui/core/Typography';
-import { calcNumDays, calcCost } from "./Utils";
-import { COST_PER_DAY } from "./Constants";
+import { calcNumDays, calcCost } from "../Utils";
+import { COST_PER_DAY } from "../Constants";
 import moment from "moment";
 
 class Payment extends React.Component {

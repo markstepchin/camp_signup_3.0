@@ -4,10 +4,10 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
-import PersonalDetails from "./PersonalDetails";
+import PersonalDetails from "../PersonalDetails";
 import Dates from "./Dates";
 import Payment from "./Payment";
-import SignUpSuccess from "./SignUpSuccess";
+import SignUpSuccess from "../SignUpSuccess";
 
 class Checkout extends React.Component {
   state = {
