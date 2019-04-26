@@ -4,7 +4,7 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
-import PersonalDetails from "../PersonalDetails";
+import PersonalDetails from "./PersonalDetails";
 import Dates from "./Dates";
 import Payment from "./Payment";
 import SignUpSuccess from "../SignUpSuccess";
@@ -69,7 +69,6 @@ class Checkout extends React.Component {
 
   handleBlur = e => {
     const name = e.target.name;
-    console.log("name: ", name);
 
     const updatedFormControls = { ...this.state.formControls };
     const updatedElement = { ...this.state.formControls[name] };
