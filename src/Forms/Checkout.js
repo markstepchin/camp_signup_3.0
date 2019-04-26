@@ -60,7 +60,7 @@ class Checkout extends React.Component {
     this.setState(
       produce(this.state, draft => {
         draft.formControls[name].value = value;
-        draft.formControls[name].valid = value !== "";
+        draft.formControls[name].valid = value.trim() !== "";
       })
     )
   }
