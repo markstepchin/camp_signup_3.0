@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { calcCost } from "../Utils";
 
-const Dates = ({ visible, startDate, endDate, handleChange }) => 
+const Dates = ({ visible, data: {startDate, endDate}, handleChange }) => 
   visible ? 
     <React.Fragment>
     <form className="form-spacer">

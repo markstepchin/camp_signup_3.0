@@ -7,7 +7,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 
-const PersonalDetails = ({ visible, firstName, lastName, email, gender, handleChange, handleBlur }) => 
+const PersonalDetails = ({ visible, data: { firstName, lastName, email, gender }, handleChange, handleBlur }) => 
   visible ? 
     <form className="form-spacer">
       <Typography variant="h6" gutterBottom>

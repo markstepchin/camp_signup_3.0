@@ -68,17 +68,13 @@ class Form extends Component {
     return (
       <React.Fragment>
         <Dates 
-          startDate={startDate} 
-          endDate={endDate} 
+          data={{startDate, endDate}}
           handleChange={this.handleChange}
           handleBlur={this.handleBlur}
           visible={activeStep === 0}
         />
         <PersonalDetails 
-          firstName={firstName}
-          lastName={lastName}
-          email={email}
-          gender={gender}
+          data={{firstName, lastName, email, gender}}
           handleChange={this.handleChange}
           handleBlur={this.handleBlur}
           visible={activeStep === 1}
