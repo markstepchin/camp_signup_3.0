@@ -96,36 +96,8 @@ class Checkout extends React.Component {
     });
   };
 
-  getStepContent = step => {
-    const { formControls } = this.state;
-
-    switch (step) {
-      case 0:
-        return <Dates 
-          startDate={formControls.startDate} 
-          endDate={formControls.endDate} 
-          handleChange={this.handleChange}
-          handleBlur={this.handleBlur}
-        />;
-      case 1:
-        return <PersonalDetails 
-          firstName={formControls.firstName}
-          lastName={formControls.lastName}
-          email={formControls.email}
-          gender={formControls.gender}
-          handleChange={this.handleChange}
-          handleBlur={this.handleBlur}
-        />;
-      case 2:
-        return <Payment {...formControls}/>;
-        
-      default:
-        throw new Error("Unknown step");
-    }
-  }
-
   render() {
-    const {activeStep} = this.state;
+    const {activeStep, formControls} = this.state;
 
     return (
       <div className="container">
@@ -142,7 +114,26 @@ class Checkout extends React.Component {
               <SignUpSuccess />
             ) : (
               <React.Fragment>
-                {this.getStepContent(activeStep)}
+                <Dates 
+                  startDate={formControls.startDate} 
+                  endDate={formControls.endDate} 
+                  handleChange={this.handleChange}
+                  handleBlur={this.handleBlur}
+                  visible={activeStep === 0}
+                />
+                <PersonalDetails 
+                  firstName={formControls.firstName}
+                  lastName={formControls.lastName}
+                  email={formControls.email}
+                  gender={formControls.gender}
+                  handleChange={this.handleChange}
+                  handleBlur={this.handleBlur}
+                  visible={activeStep === 1}
+                />
+                <Payment 
+                  {...formControls} 
+                  visible={activeStep === 2}
+                />
                 <div className="button-container">
                   {activeStep !== 0 && (
                     <Button onClick={this.handleBack} className="button">

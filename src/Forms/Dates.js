@@ -3,8 +3,9 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { calcCost } from "../Utils";
 
-const Dates = ({startDate, endDate, handleChange}) => (
-  <React.Fragment>
+const Dates = ({ visible, startDate, endDate, handleChange }) => 
+  visible ? 
+    <React.Fragment>
     <form className="form-spacer">
       <Typography variant="h6" gutterBottom>
         Dates
@@ -39,7 +40,7 @@ const Dates = ({startDate, endDate, handleChange}) => (
       <p>cost/day: $25</p>
       <p>{`Total Cost: $${calcCost(startDate.value, endDate.value)}`}</p>
     </form>  
-  </React.Fragment>
-)
+    </React.Fragment>
+  : null; 
 
 export default Dates;
