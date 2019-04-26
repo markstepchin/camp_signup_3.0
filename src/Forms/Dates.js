@@ -1,6 +1,6 @@
 import React from "react";
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
+import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
 import { calcCost } from "../Utils";
 
 const Dates = ({startDate, endDate, handleChange}) => (
@@ -20,7 +20,7 @@ const Dates = ({startDate, endDate, handleChange}) => (
             min: "2018-07-01",
             max: "2018-07-05"
           }}
-          fullWidth={true}
+          fullWidth
         />
         <span className="spacer"/>
         <TextField
@@ -33,7 +33,7 @@ const Dates = ({startDate, endDate, handleChange}) => (
             min: "2018-07-01",
             max: "2018-07-05"
           }}
-          fullWidth={true}
+          fullWidth
         />
       </div>
       <p>cost/day: $25</p>

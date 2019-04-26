@@ -1,5 +1,5 @@
 import React from "react";
-import Typography from '@material-ui/core/Typography';
+import Typography from "@material-ui/core/Typography";
 import { calcNumDays, calcCost } from "../Utils";
 import { COST_PER_DAY } from "../Constants";
 import moment from "moment";
@@ -14,14 +14,14 @@ class Payment extends React.Component {
           Summary
         </Typography>
         <h5>Personal Details</h5>
-        <span>{`Name: ${firstName.value} ${lastName.value}`}</span><br />
-        <span>{`Email: ${email.value}`}</span><br />
-        <span>{`Gender: ${gender.value}`}</span>
+        {`Name: ${firstName.value} ${lastName.value}`}<br />
+        {`Email: ${email.value}`}<br />
+        {`Gender: ${gender.value}`}
 
         <h5>Payment Details</h5>
-        <span>{`July ${getDay(startDate.value)}-${getDay(endDate.value)}`}</span><br />
-        <span>{`${calcNumDays(startDate.value, endDate.value)} days`}</span><br />
-        <span>{`cost/day: $${COST_PER_DAY}`}</span>
+        {`July ${getDay(startDate.value)}-${getDay(endDate.value)}`}<br />
+        {`${calcNumDays(startDate.value, endDate.value)} days`}<br />
+        {`cost/day: $${COST_PER_DAY}`}
         <h4>{`Total Cost: $${calcCost(startDate.value, endDate.value)}`}</h4>
 
         <h1>Credit Card Form goes here</h1>
@@ -31,10 +31,10 @@ class Payment extends React.Component {
 }
 
 const getDay = day => {
-  if (day !== '') {
+  if (day !== "") {
     return moment(day).date();
   } else {
-    return ''
+    return ""
   }
 }
 

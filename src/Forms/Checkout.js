@@ -1,9 +1,9 @@
 import React from "react";
-import Paper from '@material-ui/core/Paper';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
+import Paper from "@material-ui/core/Paper";
+import Stepper from "@material-ui/core/Stepper";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
+import Button from "@material-ui/core/Button";
 import PersonalDetails from "./PersonalDetails";
 import Dates from "./Dates";
 import Payment from "./Payment";
@@ -14,40 +14,40 @@ class Checkout extends React.Component {
     activeStep: 0,
     formControls: {
       startDate: {
-        value: '2018-07-01',
+        value: "2018-07-01",
         valid: true,
         touched: false,
-        errorMessage: 'start date is requried'
+        errorMessage: "start date is requried"
       },
       endDate: {
-        value: '2018-07-05',
+        value: "2018-07-05",
         valid: true,
         touched: false,
-        errorMessage: 'end date is required'
+        errorMessage: "end date is required"
       },
       firstName: {
-        value: '',
+        value: "",
         valid: false,
         touched: false,
-        errorMessage: 'first name is required'
+        errorMessage: "first name is required"
       },
       lastName: {
-        value: '',
+        value: "",
         valid: false,
         touched: false,
-        errorMessage: 'last name is required'
+        errorMessage: "last name is required"
       },
       email: {
-        value: '',
+        value: "",
         valid: false,
         touched: false,
-        errorMessage: 'email is required'
+        errorMessage: "email is required"
       },
       gender: {
-        value: '',
+        value: "",
         valid: false,
         touched: false,
-        errorMessage: 'gender is required'
+        errorMessage: "gender is required"
       }
     }
   };
@@ -60,7 +60,7 @@ class Checkout extends React.Component {
     const updatedElement = { ...this.state.formControls[name] };
 
     updatedElement.value = value;
-    updatedElement.valid = value !== '';
+    updatedElement.valid = value !== "";
     updatedFormControls[name] = updatedElement;
 
     this.setState({formControls: updatedFormControls});
@@ -120,7 +120,7 @@ class Checkout extends React.Component {
         return <Payment {...formControls}/>;
         
       default:
-        throw new Error('Unknown step');
+        throw new Error("Unknown step");
     }
   }
 
@@ -143,7 +143,7 @@ class Checkout extends React.Component {
             ) : (
               <React.Fragment>
                 {this.getStepContent(activeStep)}
-                <div className='button-container'>
+                <div className="button-container">
                   {activeStep !== 0 && (
                     <Button onClick={this.handleBack} className="button">
                       Back
@@ -155,7 +155,7 @@ class Checkout extends React.Component {
                     onClick={this.handleNext}
                     className="button"
                   >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                    {activeStep === steps.length - 1 ? "Place order" : "Next"}
                   </Button>
                 </div>
               </React.Fragment>
@@ -167,6 +167,6 @@ class Checkout extends React.Component {
   }
 }
 
-const steps = ['Dates', 'Personal Details', 'Payment'];
+const steps = ["Dates", "Personal Details", "Payment"];
 
 export default Checkout;

@@ -1,11 +1,11 @@
 import React from "react";
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
+import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormLabel from "@material-ui/core/FormLabel";
 
 const PersonalDetails = ({firstName, lastName, email, gender, handleChange, handleBlur}) => (
   <form className="form-spacer">
@@ -19,8 +19,8 @@ const PersonalDetails = ({firstName, lastName, email, gender, handleChange, hand
         value={firstName.value}
         onChange={handleChange}
         onBlur={handleBlur}
-        error={!firstName.valid && firstName.touched}
-        helperText={firstName.touched && !firstName.valid ? firstName.errorMessage : ' '}
+        error={showError(firstName)}
+        helperText={errorMessage(firstName)}
         fullWidth={true}
         autoFocus={true}
       />
@@ -32,8 +32,8 @@ const PersonalDetails = ({firstName, lastName, email, gender, handleChange, hand
         value={lastName.value}
         onChange={handleChange}
         onBlur={handleBlur}
-        error={!lastName.valid && lastName.touched}
-        helperText={lastName.touched && !lastName.valid ? lastName.errorMessage : ' '}
+        error={showError(lastName)}
+        helperText={errorMessage(lastName)}
         fullWidth={true}
       />
     </div>
@@ -44,18 +44,18 @@ const PersonalDetails = ({firstName, lastName, email, gender, handleChange, hand
         value={email.value}
         onChange={handleChange}
         onBlur={handleBlur}
-        error={!email.valid && email.touched}
-        helperText={email.touched && !email.valid ? email.errorMessage : ' '}
+        error={showError(email)}
+        helperText={errorMessage(email)}
         fullWidth={true}
       />
     </div>
     <div className="extra-margin-top">
-      <FormControl component="fieldset" className='margin-top'>
+      <FormControl component="fieldset" className="margin-top">
         <FormLabel component="legend">Gender</FormLabel>
         <RadioGroup
           aria-label="Gender"
           name="gender"
-          className=''
+          className=""
           value={gender.value}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -67,5 +67,8 @@ const PersonalDetails = ({firstName, lastName, email, gender, handleChange, hand
     </div>  
   </form> 
 )
+
+const showError = field => !field.valid && field.touched;
+const errorMessage = field => field.touched && !field.valid ? field.errorMessage : " ";
 
 export default PersonalDetails;
