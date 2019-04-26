@@ -8,7 +8,6 @@ import PersonalDetails from "./PersonalDetails";
 import Dates from "./Dates";
 import Payment from "./Payment";
 import SignUpSuccess from "../SignUpSuccess";
-import validate from "../validate";
 
 class Checkout extends React.Component {
   state = {
