@@ -118,7 +118,6 @@ class Checkout extends React.Component {
         />;
       case 2:
         return <Payment {...formControls}/>;
-      case 3:
         
       default:
         throw new Error('Unknown step');
@@ -171,33 +170,3 @@ class Checkout extends React.Component {
 const steps = ['Dates', 'Personal Details', 'Payment'];
 
 export default Checkout;
-
-
-// handleChange = e => {
-//   const name = e.target.name;
-//   const value = e.target.value;   
-
-//   const updatedControls = {
-//     ...this.state.formControls
-//   }
-
-//   const updatedFormElement = {
-//     ...updatedControls[name]
-//   }
-
-//   updatedFormElement.value = value;
-//   updatedFormElement.touched = true;
-//   updatedFormElement.valid = validate(value, updatedFormElement.validationRules);
-
-//   if (!updatedFormElement.valid) {
-//     updatedFormElement.errorMessage = "error"
-//   } else {
-//     updatedFormElement.errorMessage = ""
-//   }
-
-//   updatedControls[name] = updatedFormElement
-
-//   this.setState({
-//     formControls: updatedControls
-//   })
-// }
