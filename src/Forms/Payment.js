@@ -11,15 +11,15 @@ const Payment = ({ visible, startDate, endDate, firstName, lastName, email, gend
         Summary
       </Typography>
       <h5>Personal Details</h5>
-      {`Name: ${firstName.value} ${lastName.value}`}<br />
-      {`Email: ${email.value}`}<br />
-      {`Gender: ${gender.value}`}
+      Name: {firstName.value} {lastName.value}<br />
+      Email: {email.value}<br />
+      Gender: {gender.value}
 
       <h5>Payment Details</h5>
-      {`July ${getDay(startDate.value)}-${getDay(endDate.value)}`}<br />
-      {`${calcNumDays(startDate.value, endDate.value)} days`}<br />
-      {`cost/day: $${COST_PER_DAY}`}
-      <h4>{`Total Cost: $${calcCost(startDate.value, endDate.value)}`}</h4>
+      July {getDay(startDate.value)}-{getDay(endDate.value)}<br />
+      {calcNumDays(startDate.value, endDate.value)} days<br />
+      cost/day: ${COST_PER_DAY}
+      <h4>Total Cost: ${calcCost(startDate.value, endDate.value)}</h4>
 
       <h1>Credit Card Form goes here</h1>
     </form>  
@@ -28,9 +28,9 @@ const Payment = ({ visible, startDate, endDate, firstName, lastName, email, gend
 const getDay = day => {
   if (day !== "") {
     return moment(day).date();
-  } else {
-    return ""
   }
+  
+  return "";
 }
 
 

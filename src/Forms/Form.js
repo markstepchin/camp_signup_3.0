@@ -6,92 +6,85 @@ import Payment from "./Payment";
 
 class Form extends Component {
   state = {
-    formControls: {
-      startDate: {
-        value: "2018-07-01",
-        valid: true,
-        touched: false,
-        errorMessage: "start date is requried"
-      },
-      endDate: {
-        value: "2018-07-05",
-        valid: true,
-        touched: false,
-        errorMessage: "end date is required"
-      },
-      firstName: {
-        value: "",
-        valid: false,
-        touched: false,
-        errorMessage: "first name is required"
-      },
-      lastName: {
-        value: "",
-        valid: false,
-        touched: false,
-        errorMessage: "last name is required"
-      },
-      email: {
-        value: "",
-        valid: false,
-        touched: false,
-        errorMessage: "email is required"
-      },
-      gender: {
-        value: "",
-        valid: false,
-        touched: false,
-        errorMessage: "gender is required"
-      }
+    startDate: {
+      value: "2018-07-01",
+      valid: true,
+      touched: false,
+      errorMessage: "start date is requried"
+    },
+    endDate: {
+      value: "2018-07-05",
+      valid: true,
+      touched: false,
+      errorMessage: "end date is required"
+    },
+    firstName: {
+      value: "",
+      valid: false,
+      touched: false,
+      errorMessage: "first name is required"
+    },
+    lastName: {
+      value: "",
+      valid: false,
+      touched: false,
+      errorMessage: "last name is required"
+    },
+    email: {
+      value: "",
+      valid: false,
+      touched: false,
+      errorMessage: "email is required"
+    },
+    gender: {
+      value: "",
+      valid: false,
+      touched: false,
+      errorMessage: "gender is required"
     }
   };
 
-  handleChange = e => {
-    const name = e.target.name;
-    const value = e.target.value;
-
+  handleChange = ({ target: { name, value } }) => {
     this.setState(
       produce(draft => {
-        draft.formControls[name].value = value;
-        draft.formControls[name].valid = value.trim() !== "";
+        draft[name].value = value;
+        draft[name].valid = value.trim() !== "";
       })
     )
   }
 
-  handleBlur = e => {
-    const name = e.target.name;
-
+  handleBlur = ({ target: { name } }) => {
     this.setState(
       produce(draft => {
-        draft.formControls[name].touched = true
+        draft[name].touched = true
       })
     )
   }
 
   render() {
-    const { formControls } = this.state;
+    const { startDate, endDate, firstName, lastName, email, gender } = this.state;
     const { activeStep } = this.props;
 
     return (
       <React.Fragment>
         <Dates 
-          startDate={formControls.startDate} 
-          endDate={formControls.endDate} 
+          startDate={startDate} 
+          endDate={endDate} 
           handleChange={this.handleChange}
           handleBlur={this.handleBlur}
           visible={activeStep === 0}
         />
         <PersonalDetails 
-          firstName={formControls.firstName}
-          lastName={formControls.lastName}
-          email={formControls.email}
-          gender={formControls.gender}
+          firstName={firstName}
+          lastName={lastName}
+          email={email}
+          gender={gender}
           handleChange={this.handleChange}
           handleBlur={this.handleBlur}
           visible={activeStep === 1}
         />
         <Payment 
-          {...formControls} 
+          {...this.state} 
           visible={activeStep === 2}
         />
       </React.Fragment>
