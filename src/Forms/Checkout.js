@@ -8,6 +8,7 @@ import PersonalDetails from "./PersonalDetails";
 import Dates from "./Dates";
 import Payment from "./Payment";
 import SignUpSuccess from "../SignUpSuccess";
+import produce from "immer";
 
 class Checkout extends React.Component {
   state = {
@@ -56,26 +57,22 @@ class Checkout extends React.Component {
     const name = e.target.name;
     const value = e.target.value;
 
-    const updatedFormControls = { ...this.state.formControls };
-    const updatedElement = { ...this.state.formControls[name] };
-
-    updatedElement.value = value;
-    updatedElement.valid = value !== "";
-    updatedFormControls[name] = updatedElement;
-
-    this.setState({formControls: updatedFormControls});
+    this.setState(
+      produce(this.state, draft => {
+        draft.formControls[name].value = value;
+        draft.formControls[name].valid = value !== "";
+      })
+    )
   }
 
   handleBlur = e => {
     const name = e.target.name;
 
-    const updatedFormControls = { ...this.state.formControls };
-    const updatedElement = { ...this.state.formControls[name] };
-
-    updatedElement.touched = true;
-    updatedFormControls[name] = updatedElement;
-
-    this.setState({formControls: updatedFormControls});
+    this.setState(
+      produce(this.state, draft => {
+        draft.formControls[name].touched = true
+      })
+    )
   }
 
   handleNext = () => {
