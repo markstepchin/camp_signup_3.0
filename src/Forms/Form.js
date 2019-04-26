@@ -51,7 +51,7 @@ class Form extends Component {
     const value = e.target.value;
 
     this.setState(
-      produce(this.state, draft => {
+      produce(draft => {
         draft.formControls[name].value = value;
         draft.formControls[name].valid = value.trim() !== "";
       })
@@ -62,7 +62,7 @@ class Form extends Component {
     const name = e.target.name;
 
     this.setState(
-      produce(this.state, draft => {
+      produce(draft => {
         draft.formControls[name].touched = true
       })
     )
