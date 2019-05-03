@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Checkout from "./Forms/Checkout";
 import Details from "./Details";
 import './App.css';
@@ -9,12 +9,48 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route path="/Checkout" component={() => <Checkout />}/>
-          <Route path="/" component={() => <Details />} />
+          <Route path="/Checkout" component={() => 
+            <Page>
+              <Checkout />
+              <EmptyFooter />
+            </Page>}/>
+          <Route path="/admin" component={() => 
+            <Page>
+              <Admin />
+              <AdminFooter />
+            </Page>}/>
+          <Route path="/" component={() =>
+            <Page>
+              <Details />
+              <LandingPageFooter />
+            </Page>} />
         </Switch>
       </Router>
     );
   }
 }
+
+const Page = ({children}) => children;
+
+const FooterLayout = ({children}) => (
+  <div className="footer-layout">
+    {children}
+    <span className="copyrite">c Mark Stepchin, 2019</span>
+  </div>
+);
+
+const EmptyFooter = () => <FooterLayout />;
+
+const LandingPageFooter = () => 
+  <FooterLayout>
+    <Link to="/admin">admin</Link>
+  </FooterLayout>;
+
+const AdminFooter = () => 
+  <FooterLayout> 
+    <Link to="/">Camp Info</Link>
+  </FooterLayout>;
+
+const Admin = () => <h1>Admin</h1>;
 
 export default App;

@@ -83,3 +83,30 @@
 .form-field {
   margin-top: 1rem
 }
+
+.footer-layout {
+  background-color: #3f51b5;
+  color: white;
+
+  position: absolute;
+  bottom: 0;
+
+  height: 5rem;
+  width: 100%;
+  margin-top: 5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-layout a {
+  color: white;
+  font-weight: 100;
+}
+
+.copyrite {
+  font-size: .7rem;
+  margin-top: .5rem;
+}
