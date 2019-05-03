@@ -5,14 +5,6 @@ import Details from "./Details";
 import './App.css';
 
 class App extends Component {
-  state = {
-    values: ''
-  }
-
-  displayState = values => {
-    this.setState({values: JSON.stringify(values)});
-  }
-
   render() {
     return (
       <Router>
