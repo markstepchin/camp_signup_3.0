@@ -42,13 +42,13 @@ class Form extends Component {
       errorMessage: "gender is required"
     },
     adminEmail: {
-      value: "",
+      value: "admin@email.com",
       valid: false,
       touched: false,
       errorMessage: "email address is requried"
     },
     password: {
-      value: "",
+      value: "password123",
       valid: false,
       touched: false,
       errorMessage: "password is requried"
