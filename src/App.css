@@ -1,21 +1,14 @@
 .container {
   display: flex;
-  justify-content: center
-}
-
-.br {
-  margin-top: 1rem
-}
-
-.red-text {
-  color: "red";
+  justify-content: center;
 }
 
 .paper {
-  width: 40rem;
-  margin-top: 5rem;
+  width: 30rem;
+  margin-top: 2rem;
   margin-right: 2rem;
   margin-left: 2rem;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .form-spacer {
@@ -82,4 +75,41 @@
 
 .form-field {
   margin-top: 1rem
+}
+
+.footer-layout {
+  background-color: rgb(243, 243, 243);
+  color: rgba(0, 0, 0, 0.54);
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  height: 5rem;
+  width: 100%;
+  margin-top: 5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-layout a {
+  color: rgba(0, 0, 0, 0.54);
+  font-weight: 300;
+  font-size: 1.25rem;
+}
+
+.copyrite {
+  font-size: .7rem;
+  margin-top: .5rem;
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 480px) {
+  .paper {
+    width: calc(100% - 3rem);
+  }
 }
