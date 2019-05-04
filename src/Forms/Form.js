@@ -40,7 +40,19 @@ class Form extends Component {
       valid: false,
       touched: false,
       errorMessage: "gender is required"
-    }
+    },
+    adminEmail: {
+      value: "",
+      valid: false,
+      touched: false,
+      errorMessage: "email address is requried"
+    },
+    password: {
+      value: "",
+      valid: false,
+      touched: false,
+      errorMessage: "password is requried"
+    },
   };
 
   handleChange = ({ target: { name, value } }) => {
