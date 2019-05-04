@@ -78,8 +78,8 @@
 }
 
 .footer-layout {
-  background-color: #3f51b5;
-  color: white;
+  background-color: rgb(243, 243, 243);
+  color: rgba(0, 0, 0, 0.54);
 
   position: fixed;
   bottom: 0;
@@ -96,8 +96,9 @@
 }
 
 .footer-layout a {
-  color: white;
-  font-weight: 100;
+  color: rgba(0, 0, 0, 0.54);
+  font-weight: 300;
+  font-size: 1.25rem;
 }
 
 .copyrite {
@@ -109,6 +110,6 @@
 
 @media only screen and (max-width: 480px) {
   .paper {
-    width: calc(100% - 2rem);
+    width: calc(100% - 3rem);
   }
 }

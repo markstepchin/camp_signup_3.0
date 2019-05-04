@@ -35,7 +35,7 @@ const Page = ({children}) => children;
 const FooterLayout = ({children}) => (
   <div className="footer-layout">
     {children}
-    <span className="copyrite">c Mark Stepchin, 2019</span>
+    <span className="copyrite">&copy; Mark Stepchin, 2019</span>
   </div>
 );
 
