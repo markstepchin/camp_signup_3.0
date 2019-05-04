@@ -45,11 +45,10 @@ const Details = () => (
     </div>
     <div className="register-link-container">
       <div className="register-button">
-        <Link to="/checkout">
+        <Link to="/checkout" style={{textDecoration: 'none'}}>
           <Button
             variant="contained"
             color="primary"
-            className="button"
           >
             Register
           </Button>
@@ -67,11 +66,10 @@ const Header = () => (
       <Typography variant="h6" color="inherit" noWrap>
         Spokamp 2019
       </Typography>
-      <Link to="/checkout">
+      <Link to="/checkout" style={{textDecoration: 'none'}}>
         <Button
           variant="contained"
           color="primary"
-          className="button"
         >
           Register
         </Button>

@@ -15,7 +15,7 @@ const SignUpSuccess = () => (
       </Typography>
     </div>
     <div className='button-container'>
-      <Link to="/">
+      <Link to="/" style={{textDecoration: 'none'}}>
         <Button
           variant="contained"
           color="primary"

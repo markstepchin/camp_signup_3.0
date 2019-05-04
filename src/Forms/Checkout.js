@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
@@ -70,17 +71,18 @@ class Checkout extends React.Component {
 }
 
 const NavigationButtons = ({ activeStep, handleBack, handleNext }) => (
-  <div className="button-container">
-    {activeStep !== 0 && (
-      <Button onClick={handleBack} className="button">
+  <div className='button-container'>
+    {activeStep !== 0 ? (
+      <Button onClick={handleBack} variant="contained">
         Back
       </Button>
-    )}
+    ) : <Link to="/" style={{textDecoration: 'none'}}><Button variant="contained">Cancel</Button></Link>}
+    
     <Button
       variant="contained"
       color="primary"
       onClick={handleNext}
-      className="button"
+      style={{marginLeft: '.5rem'}}
     >
       {activeStep === steps.length - 1 ? "Place order" : "Next"}
     </Button>
