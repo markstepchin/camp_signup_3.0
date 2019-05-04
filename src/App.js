@@ -5,6 +5,7 @@ import Details from "./Layout/Details";
 import SignIn from "./Forms/SignIn";
 import Admin from "./Layout/DashBoard"
 import './App.css';
+import SignOutButton from "./components/SignOutButton";
 
 class App extends Component {
   render() {
@@ -19,11 +20,12 @@ class App extends Component {
           <Route path="/sign-in" component={() => 
             <Page>
               <SignIn />
-              <AdminFooter />
+              <SignInFooter />
             </Page>}/>
           <Route path="/admin" component={() =>
             <Page>
               <Admin />
+              <SignOutFooter />
             </Page>} />
           <Route path="/" component={() =>
             <Page>
@@ -52,9 +54,14 @@ const LandingPageFooter = () =>
     <Link to="/sign-in">admin</Link>
   </FooterLayout>;
 
-const AdminFooter = () => 
+const SignInFooter = () => 
   <FooterLayout> 
     <Link to="/">Camp Info</Link>
+  </FooterLayout>;
+
+const SignOutFooter = () => 
+  <FooterLayout> 
+    <SignOutButton />
   </FooterLayout>;
 
 export default App;
