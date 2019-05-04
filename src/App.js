@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Checkout from "./Forms/Checkout";
 import Details from "./Layout/Details";
 import SignIn from "./Forms/SignIn";
+import Admin from "./Layout/DashBoard"
 import './App.css';
 
 class App extends Component {
@@ -15,11 +16,15 @@ class App extends Component {
               <Checkout />
               <EmptyFooter />
             </Page>}/>
-          <Route path="/admin" component={() => 
+          <Route path="/sign-in" component={() => 
             <Page>
               <SignIn />
               <AdminFooter />
             </Page>}/>
+          <Route path="/admin" component={() =>
+            <Page>
+              <Admin />
+            </Page>} />
           <Route path="/" component={() =>
             <Page>
               <Details />
@@ -44,7 +49,7 @@ const EmptyFooter = () => <FooterLayout />;
 
 const LandingPageFooter = () => 
   <FooterLayout>
-    <Link to="/admin">admin</Link>
+    <Link to="/sign-in">admin</Link>
   </FooterLayout>;
 
 const AdminFooter = () => 

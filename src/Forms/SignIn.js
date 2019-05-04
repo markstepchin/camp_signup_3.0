@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Form from "./Form";
@@ -24,14 +25,19 @@ const SignIn = () => (
               type="password"
             />
             <div style={{marginTop: '2rem'}}>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
+              <Link
+                to="/admin"
+                style={{textDecoration: 'none'}}
               >
-                Sign in
-              </Button>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                >
+                  Sign in
+                </Button>
+              </Link>
             </div>
           </Form>
         </div>
