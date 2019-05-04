@@ -89,6 +89,6 @@ const NavigationButtons = ({ activeStep, handleBack, handleNext }) => (
   </div>
 );
 
-const steps = ["Dates", "Personal Details", "Payment"];
+const steps = ["Dates", "Personal", "Payment"];
 
 export default Checkout;
