@@ -1,5 +1,4 @@
 import React from "react";
-import Paper from "@material-ui/core/Paper";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
@@ -35,7 +34,7 @@ class Checkout extends React.Component {
 
     return (
       <div className="container">
-        <Paper className="paper">
+        <div className="paper">
           <Stepper activeStep={activeStep} alternativeLabel>
             {steps.map(label => (
               <Step key={label}>
@@ -67,7 +66,7 @@ class Checkout extends React.Component {
               </React.Fragment>
             )}
           </React.Fragment>
-        </Paper>
+        </div>
       </div>
     )
   }
