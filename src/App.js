@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Checkout from "./Forms/Checkout";
 import Details from "./Details";
+import SignIn from "./Forms/SignIn";
 import './App.css';
 
 class App extends Component {
@@ -16,7 +17,7 @@ class App extends Component {
             </Page>}/>
           <Route path="/admin" component={() => 
             <Page>
-              <Admin />
+              <SignIn />
               <AdminFooter />
             </Page>}/>
           <Route path="/" component={() =>
@@ -50,7 +51,5 @@ const AdminFooter = () =>
   <FooterLayout> 
     <Link to="/">Camp Info</Link>
   </FooterLayout>;
-
-const Admin = () => <h1>Admin</h1>;
 
 export default App;
