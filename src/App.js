@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Checkout from "./Forms/Checkout";
-import Details from "./Details";
+import Details from "./Layout/Details";
 import SignIn from "./Forms/SignIn";
 import './App.css';
 
