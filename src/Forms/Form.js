@@ -1,8 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, createContext } from "react";
 import produce from "immer";
-import PersonalDetails from "./PersonalDetails";
-import Dates from "./Dates";
-import Payment from "./Payment";
+
+export const FormContext = createContext({});
 
 class Form extends Component {
   state = {
@@ -61,29 +60,19 @@ class Form extends Component {
     )
   }
 
-  render() {
-    const { startDate, endDate, firstName, lastName, email, gender } = this.state;
-    const { activeStep } = this.props;
+  get value() {
+    return {
+      data: this.state,
+      handleChange: this.handleChange,
+      handleBlur: this.handleBlur
+    };
+  }
 
+  render() {
     return (
-      <React.Fragment>
-        <Dates 
-          data={{startDate, endDate}}
-          handleChange={this.handleChange}
-          handleBlur={this.handleBlur}
-          visible={activeStep === 0}
-        />
-        <PersonalDetails 
-          data={{firstName, lastName, email, gender}}
-          handleChange={this.handleChange}
-          handleBlur={this.handleBlur}
-          visible={activeStep === 1}
-        />
-        <Payment 
-          {...this.state} 
-          visible={activeStep === 2}
-        />
-      </React.Fragment>
+      <FormContext.Provider value={this.value}>
+        {this.props.children}
+      </FormContext.Provider>
     )
   }
 }

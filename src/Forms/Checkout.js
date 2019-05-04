@@ -6,6 +6,9 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import SignUpSuccess from "../SignUpSuccess";
 import Form from "./Form";
+import PersonDetails from "./PersonalDetails";
+import Dates from "./Dates";
+import Payment from "./Payment";
 
 class Checkout extends React.Component {
   state = {
@@ -48,22 +51,16 @@ class Checkout extends React.Component {
               <SignUpSuccess />
             ) : (
               <React.Fragment>
-                <Form activeStep={activeStep}/>
-                <div className="button-container">
-                  {activeStep !== 0 && (
-                    <Button onClick={this.handleBack} className="button">
-                      Back
-                    </Button>
-                  )}
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={this.handleNext}
-                    className="button"
-                  >
-                    {activeStep === steps.length - 1 ? "Place order" : "Next"}
-                  </Button>
-                </div>
+                <Form>
+                  <Dates visible={activeStep === 0} />
+                  <PersonDetails visible={activeStep === 1} />
+                  <Payment visible={activeStep === 2} />
+                </Form>
+                <NavigationButtons 
+                  activeStep={activeStep} 
+                  handleBack={this.handleBack} 
+                  handleNext={this.handleNext} 
+                />
               </React.Fragment>
             )}
           </React.Fragment>
@@ -72,6 +69,24 @@ class Checkout extends React.Component {
     )
   }
 }
+
+const NavigationButtons = ({ activeStep, handleBack, handleNext }) => (
+  <div className="button-container">
+    {activeStep !== 0 && (
+      <Button onClick={handleBack} className="button">
+        Back
+      </Button>
+    )}
+    <Button
+      variant="contained"
+      color="primary"
+      onClick={handleNext}
+      className="button"
+    >
+      {activeStep === steps.length - 1 ? "Place order" : "Next"}
+    </Button>
+  </div>
+);
 
 const steps = ["Dates", "Personal Details", "Payment"];
 
