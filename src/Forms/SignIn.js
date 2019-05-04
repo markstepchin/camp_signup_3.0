@@ -6,18 +6,23 @@ import Form from "./Form";
 import Input from "./Input";
 import { FormContext } from "./Form"; 
 import { withFirebase } from "../components/Firebase";
+import { compose } from "recompose";
+
+const DEFAULT_BUTTON_TEXT = "Sign in"
 
 class SignIn extends React.Component {
   state = {
-    error: {}
+    error: {},
+    buttonText: DEFAULT_BUTTON_TEXT
   }
 
   onSubmit = (username, password) => {
+    this.setState({ buttonText: "loading..."})
     this.props.firebase.doSignInWithEmailAndPassword(username, password)
       .then(authUser => {
         this.props.history.push("/admin");
       })
-      .catch(error => this.setState({ error }));
+      .catch(error => this.setState({ error, buttonText: DEFAULT_BUTTON_TEXT }));
   }
 
   render() {
@@ -51,7 +56,7 @@ class SignIn extends React.Component {
                         color="primary"
                         onClick={() => this.onSubmit(adminEmail.value, password.value)}
                       >
-                        Sign in
+                        {this.state.buttonText}
                       </Button>
                     )}
                   </FormContext.Consumer>
@@ -65,4 +70,7 @@ class SignIn extends React.Component {
   }
 }
 
-export default withRouter(withFirebase(SignIn));
+export default compose(
+  withRouter,
+  withFirebase
+)(SignIn);
