@@ -43,18 +43,6 @@ const Details = () => (
         </div>
       </div>
     </div>
-    <div className="register-link-container">
-      <div className="register-button">
-        <Link to="/checkout" style={{textDecoration: 'none'}}>
-          <Button
-            variant="contained"
-            color="primary"
-          >
-            Register
-          </Button>
-        </Link>
-      </div>
-    </div>
   </React.Fragment>
 )
 
