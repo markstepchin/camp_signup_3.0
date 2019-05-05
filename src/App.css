@@ -1,33 +1,113 @@
-.App {
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  background-color: rgb(250,250,250);
+}
+
+.paper {
+  width: 30rem;
+  margin: .75rem;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  background-color: rgb(255,255,255);
+}
+
+.form-spacer {
+  margin: 2rem;
+}
+
+.field-spacer {
+  margin-bottom: 2rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin: 2rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.extra-margin-top {
+  margin-top: 2rem;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.spacer {
+  width: 4rem;
+}
+
+.details-layout {
+  margin-top: 7rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.details-section {
+  display: flex;
+  justify-content: center;
+  margin: 4rem 0
+}
+
+.detail-icons {
   text-align: center;
+  font-size: 3rem;
+  margin: 2rem;
+  color: rgb(181, 181, 182);
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.register-link-container {
+  margin-bottom: 10rem;
+  text-align: center
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.toolbar-container {
+  display: flex;
+  justify-content: space-between;
+  margin: .75rem
+}
+
+.form-field {
+  margin-top: 1rem
+}
+
+.footer-layout {
+  background-color: rgb(243, 243, 243);
+  color: rgba(0, 0, 0, 0.54);
+
+  height: 5rem;
+  width: 100%;
+  margin-top: 5rem;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.footer-layout a {
+  color: rgba(0, 0, 0, 0.54);
+  font-weight: 300;
+  font-size: 1.25rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.copyrite {
+  font-size: .7rem;
+  margin-top: .5rem;
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 480px) {
+  .paper {
+    width: calc(100% - 1.5rem);
   }
 }
