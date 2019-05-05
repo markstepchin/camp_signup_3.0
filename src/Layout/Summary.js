@@ -1,7 +1,7 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { calcNumDays, calcCost } from "../Utils";
-import { COST_PER_DAY } from "../Constants";
+import { COST_PER_DAY } from "../constants/Price";
 import moment from "moment";
 
 const Summary = ({ user: { firstName, lastName, email, startDate, endDate } }) => (

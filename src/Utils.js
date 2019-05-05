@@ -1,5 +1,5 @@
 import moment from "moment";
-import { COST_PER_DAY } from "./Constants";
+import { COST_PER_DAY } from "./constants/Price";
 
 export const calcNumDays = (startDate, endDate) => {
   if (startDate !== '' && endDate !== '') {

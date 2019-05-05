@@ -4,6 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import { CHECKOUT } from "../constants/Routes";
 
 const Details = () => (
   <React.Fragment>
@@ -54,7 +55,7 @@ const Header = () => (
       <Typography variant="h6" color="inherit" noWrap>
         Spokamp 2019
       </Typography>
-      <Link to="/checkout" style={{textDecoration: 'none'}}>
+      <Link to={CHECKOUT} style={{textDecoration: 'none'}}>
         <Button
           variant="contained"
           color="primary"
