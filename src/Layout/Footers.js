@@ -1,17 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SignOutButton from "../components/SignOutButton";
+import { SIGN_IN, LANDING } from "../constants/Routes";
 
 export const EmptyFooter = () => <FooterLayout />;
 
 export const LandingPageFooter = () => 
   <FooterLayout>
-    <Link to="/sign-in">admin</Link>
+    <Link to={SIGN_IN}>admin</Link>
   </FooterLayout>;
 
 export const SignInFooter = () => 
   <FooterLayout> 
-    <Link to="/">Camp Info</Link>
+    <Link to={LANDING}>Camp Info</Link>
   </FooterLayout>;
 
 export const SignOutFooter = () => 
