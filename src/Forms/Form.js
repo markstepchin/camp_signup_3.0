@@ -94,14 +94,6 @@ class Form extends Component {
   }
 }
 
-export const withForm = Component => props => (
-  <FormContext.Consumer>
-    {({ data:  { startDate, endDate, firstName, lastName, email } }) => (
-      <Component {...props} hello="hello world" hello2="hi" email={email}/>
-    )}
-  </FormContext.Consumer>
-);
-
 const dateOptions = [
   {
     value: "2018-07-01",
