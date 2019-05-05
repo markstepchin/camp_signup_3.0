@@ -5,6 +5,13 @@ import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { CHECKOUT } from "../constants/Routes";
+import { NAME, HEADING, DESCRIPTION, START_DATE, END_DATE } from "../constants/CampDetails";
+import { COST_PER_DAY } from "../constants/Price";
+import { calcCost } from "../Utils";
+import moment from "moment";
+
+const startDate = moment(START_DATE);
+const endDate = moment(END_DATE);
 
 const Details = () => (
   <React.Fragment>
@@ -12,13 +19,13 @@ const Details = () => (
     <Header />
     <div className="details-layout">
       <div className="description">
-        <h3>Most fun camp of the year!</h3>
-        <p>Short description about how amazing this camp will be...</p>
+        <h3>{HEADING}</h3>
+        <p>{DESCRIPTION}</p>
       </div>
       <div className="details-section">
         <div>
           <div className="detail-icons"><i className="far fa-calendar-alt"></i></div>
-          <span>July 1-5</span>
+          <span>{startDate.format('MMMM')} {startDate.date()}-{endDate.date()}</span>
           <br />
           <a href="">Add to Calendar</a>
         </div>
@@ -38,9 +45,9 @@ const Details = () => (
       <div className="details-section">
         <div>
           <div className="detail-icons"><i className="fas fa-money-check-alt"></i></div>
-          <span>Total: $125</span>
+          <span>Total: ${calcCost(START_DATE, END_DATE)}</span>
           <br />
-          <span><i>(or $25 per day)</i></span>
+          <span><i>(or ${COST_PER_DAY} per day)</i></span>
         </div>
       </div>
     </div>
@@ -53,7 +60,7 @@ const Header = () => (
   <AppBar position="absolute" color="default" className="">
     <div className="toolbar-container">
       <Typography variant="h6" color="inherit" noWrap>
-        Spokamp 2019
+        {NAME}
       </Typography>
       <Link to={CHECKOUT} style={{textDecoration: 'none'}}>
         <Button

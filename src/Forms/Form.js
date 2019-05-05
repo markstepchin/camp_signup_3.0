@@ -5,7 +5,7 @@ import { compose } from "recompose";
 import { withFirebase } from "../components/Firebase";
 import { pick } from "lodash";
 import uuid from "uuid";
-
+import { START_DATE, END_DATE } from "../constants/CampDetails";
 export const FormContext = createContext({});
 
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -30,8 +30,8 @@ const VALIDATIONS = {
 class Form extends Component {
   state = {
     values: {
-      startDate: "2018-07-01",
-      endDate: "2018-07-05",
+      startDate: START_DATE,
+      endDate: END_DATE,
       firstName: "",
       lastName: "",
       email: "",
