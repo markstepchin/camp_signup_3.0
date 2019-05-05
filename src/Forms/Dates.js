@@ -4,29 +4,7 @@ import { calcCost } from "../Utils";
 import { Select }  from "./Input";
 import { FormContext } from "./Form";
 import moment from "moment";
-
-const dateOptions = [
-  {
-    value: "2018-07-01",
-    display: "July 1"
-  },
-  {
-    value: "2018-07-02",
-    display: "July 2"
-  },
-  {
-    value: "2018-07-03",
-    display: "July 3"
-  },
-  {
-    value: "2018-07-04",
-    display: "July 4"
-  },
-  {
-    value: "2018-07-05",
-    display: "July 5"
-  }
-];
+import { dateOptions } from "../constants/DateOptions";
 
 const Dates = ({ visible }) => {
   const { data: { values: { startDate, endDate } } } = useContext(FormContext);

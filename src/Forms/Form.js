@@ -6,9 +6,8 @@ import { withFirebase } from "../components/Firebase";
 import { pick } from "lodash";
 import uuid from "uuid";
 import { START_DATE, END_DATE } from "../constants/CampDetails";
+import { emailRegex } from "../constants/PatternMatching";
 export const FormContext = createContext({});
-
-const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 const VALIDATIONS = {
   required: value => {
