@@ -16,7 +16,7 @@ const Details = () => (
       </div>
       <div className="details-section">
         <div>
-          <div className="detail-icons"><i class="far fa-calendar-alt"></i></div>
+          <div className="detail-icons"><i className="far fa-calendar-alt"></i></div>
           <span>July 1-5</span>
           <br />
           <a href="">Add to Calendar</a>
@@ -24,7 +24,7 @@ const Details = () => (
       </div>
       <div className="details-section">
         <div>
-          <div className="detail-icons"><i class="fas fa-map-marker-alt"></i></div>
+          <div className="detail-icons"><i className="fas fa-map-marker-alt"></i></div>
           <span>Waitts Lake Open Bible Camp</span>
           <br />
           <span>3362 Thompson Rd #D, </span>
@@ -36,7 +36,7 @@ const Details = () => (
       </div>
       <div className="details-section">
         <div>
-          <div className="detail-icons"><i class="fas fa-money-check-alt"></i></div>
+          <div className="detail-icons"><i className="fas fa-money-check-alt"></i></div>
           <span>Total: $125</span>
           <br />
           <span><i>(or $25 per day)</i></span>
