@@ -9,13 +9,15 @@ class Form extends Component {
       value: "2018-07-01",
       valid: true,
       touched: false,
-      errorMessage: "start date is requried"
+      errorMessage: "start date is requried",
+      options: dateOptions
     },
     endDate: {
       value: "2018-07-05",
       valid: true,
       touched: false,
-      errorMessage: "end date is required"
+      errorMessage: "end date is required",
+      options: dateOptions
     },
     firstName: {
       value: "",
@@ -34,12 +36,6 @@ class Form extends Component {
       valid: false,
       touched: false,
       errorMessage: "email is required"
-    },
-    gender: {
-      value: "",
-      valid: false,
-      touched: false,
-      errorMessage: "gender is required"
     },
     adminEmail: {
       value: "admin@email.com",
@@ -72,11 +68,20 @@ class Form extends Component {
     )
   }
 
+  handleEndDate = startDate => {
+    this.setState(
+      produce(draft => {
+        draft.endDate.options = dateOptions.filter(option => option.value >= startDate.value)
+      })
+    )
+  }
+
   get value() {
     return {
       data: this.state,
       handleChange: this.handleChange,
-      handleBlur: this.handleBlur
+      handleBlur: this.handleBlur,
+      handleEndDate: this.handleEndDate
     };
   }
 
@@ -88,5 +93,36 @@ class Form extends Component {
     )
   }
 }
+
+export const withForm = Component => props => (
+  <FormContext.Consumer>
+    {({ data:  { startDate, endDate, firstName, lastName, email } }) => (
+      <Component {...props} hello="hello world" hello2="hi" email={email}/>
+    )}
+  </FormContext.Consumer>
+);
+
+const dateOptions = [
+  {
+    value: "2018-07-01",
+    display: "July 1"
+  },
+  {
+    value: "2018-07-02",
+    display: "July 2"
+  },
+  {
+    value: "2018-07-03",
+    display: "July 3"
+  },
+  {
+    value: "2018-07-04",
+    display: "July 4"
+  },
+  {
+    value: "2018-07-05",
+    display: "July 5"
+  }
+]
 
 export default Form;

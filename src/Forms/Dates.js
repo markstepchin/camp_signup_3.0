@@ -1,8 +1,8 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { calcCost } from "../Utils";
-import Input from "./Input";
-import { FormContext } from "./Form"; 
+import { Input, Select }  from "./Input";
+import { FormContext } from "./Form";
 
 const Dates = ({ visible }) => 
   visible ? 
@@ -11,16 +11,17 @@ const Dates = ({ visible }) =>
       <Typography variant="h6" gutterBottom>
         Dates
       </Typography>
-      <Input
+      <Select 
         name="startDate"
         label="Start"
-        type="date"
+        restrictEndDate
       />
-      <Input
+      <br />
+      <Select 
         name="endDate"
         label="End"
-        type="date"
       />
+      <br />
       <DisplayCost />
     </form>  
     </React.Fragment>
