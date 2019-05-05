@@ -35,7 +35,7 @@ export const Select = ({ name, label, options, isOptionDisabled }) => {
         style={{fontSize: '1rem', width: '100%'}}
       >
         {options
-          .map((option, i) => <option disabled={isOptionDisabled(option.value, name)} value={option.value} key={i}>{option.display}</option>)}
+          .map(option => <option disabled={isOptionDisabled(option.value, name)} value={option.value} key={option.value}>{option.display}</option>)}
       </select>
     </>
   )
