@@ -16,7 +16,7 @@ class Firebase {
     app.initializeApp(config);
 
     this.auth = app.auth();
-    this.database = app.database();
+    this.db = app.database();
   }
   
   // *** Auth API ***
@@ -35,7 +35,7 @@ class Firebase {
     this.auth.currentUser.updatePassword(password);
 
   // *** User API ***
-  user = uid => this.db.ref(`users/${uid}`);
+  user = () => this.db.ref(`users/`).push();
   users = () => this.db.ref('users');
 }
 

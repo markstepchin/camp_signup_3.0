@@ -11,30 +11,28 @@ import { EmptyFooter, LandingPageFooter, SignInFooter, SignOutFooter } from "./L
 const App = () => (
   <Router>
     <Switch>
-      <Route path="/Checkout" component={() => 
-        <Page>
+      <Route path="/checkout" component={() => 
+        <>
           <Checkout />
           <EmptyFooter />
-        </Page>}/>
+        </>}/>
       <Route path="/sign-in" component={() => 
-        <Page>
+        <>
           <SignIn />
           <SignInFooter />
-        </Page>}/>
+        </>}/>
       <Route path="/admin" component={() =>
-        <Page>
+        <>
           <Admin />
           <SignOutFooter />
-        </Page>} />
+        </>} />
       <Route path="/" component={() =>
-        <Page>
+        <>
           <Details />
           <LandingPageFooter />
-        </Page>} />
+        </>} />
     </Switch>
   </Router>
 );
-
-const Page = ({children}) => children;
 
 export default withAuthentication(App);

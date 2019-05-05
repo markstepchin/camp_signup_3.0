@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import TextField from "@material-ui/core/TextField";
 import { FormContext } from "./Form";
 
@@ -10,11 +10,11 @@ export const Input = ({label, name, type}) => (
           name={name}
           label={label}
           type={type}
-          value={data[name].value}
+          value={data.values[name]}
           onChange={handleChange}
           onBlur={handleBlur}
-          error={showError(data[name])}
-          helperText={errorMessage(data[name])}
+          error={!!data.errors[name]}
+          helperText={data.errors[name]}
           fullWidth
         />
       </div>
@@ -22,30 +22,21 @@ export const Input = ({label, name, type}) => (
   </FormContext.Consumer>
 );
 
-export const Select = ({ name, label, restrictEndDate }) => (
-  <FormContext.Consumer>
-    {({data, handleChange, handleEndDate}) => (
-      <React.Fragment>
-        <p style={{fontSize: '.75rem', color: 'rgba(0, 0, 0, 0.54)'}}>{label}</p>
-        <select
-          value={data[name].value}
-          onChange={(e) => {
-            handleChange(e);
+export const Select = ({ name, label, options, isOptionDisabled }) => {
+  const { data: { values }, handleChange } = useContext(FormContext);
 
-            if (restrictEndDate) {
-              handleEndDate(e.target)
-            }
-          }}
-          name={name}
-          style={{fontSize: '1rem', width: '100%'}}
-        >
-          {data[name].options
-            .map((option, i) => <option value={option.value} key={i}>{option.display}</option>)}
-        </select>
-      </React.Fragment>
-    )}
-  </FormContext.Consumer>
-)
-
-const showError = field => !field.valid && field.touched;
-const errorMessage = field => field.touched && !field.valid ? field.errorMessage : " ";
+  return (
+    <>
+      <p style={{fontSize: '.75rem', color: 'rgba(0, 0, 0, 0.54)'}}>{label}</p>
+      <select
+        value={values[name]}
+        onChange={handleChange}
+        name={name}
+        style={{fontSize: '1rem', width: '100%'}}
+      >
+        {options
+          .map((option, i) => <option disabled={isOptionDisabled(option.value, name)} value={option.value} key={i}>{option.display}</option>)}
+      </select>
+    </>
+  )
+}
