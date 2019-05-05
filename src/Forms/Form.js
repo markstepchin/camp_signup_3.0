@@ -4,6 +4,7 @@ import produce from "immer";
 import { compose } from "recompose";
 import { withFirebase } from "../components/Firebase";
 import { pick } from "lodash";
+import uuid from "uuid";
 
 export const FormContext = createContext({});
 
@@ -96,18 +97,20 @@ class Form extends Component {
     }
   }
 
-  handleBlur = ({ target: { name } }) => {
-    this.validateField(name);
-  }
+  handleBlur = ({ target: { name } }) => this.validateField(name);
 
   handleRegistration = handleNext => {
     const { startDate, endDate, firstName, lastName, email } = this.state.values;
 
-    this.props.firebase.user()
+    const userUuid = uuid();
+    this.props.firebase.writeUser(userUuid)
       .set({ startDate, endDate, firstName, lastName, email })
-      .then(() => {
-        handleNext();
-      })
+      .then(() => 
+        this.props.firebase.readUser(userUuid)
+          .then(res => res.val())
+          .then(user => handleNext(user))
+          .catch(error => console.log(error))
+      )
       .catch(error => console.log(error));
   }
 
