@@ -1,6 +1,6 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import Input from "./Input";
+import { Input } from "./Input";
 
 const PersonalDetails = ({ visible }) => 
   visible ? 
