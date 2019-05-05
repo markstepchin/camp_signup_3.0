@@ -20,22 +20,22 @@ const Steps = {
 class Checkout extends React.Component {
   state = {
     activeStep: Steps.DATES,
+    registeredUser: {}
   };
 
-  handleNext = () => {
+  handleNext = registeredUser => 
     this.setState(state => ({
       activeStep: state.activeStep + 1,
+      registeredUser: registeredUser
     }));
-  };
 
-  handleBack = () => {
+  handleBack = () =>
     this.setState(state => ({
       activeStep: state.activeStep - 1,
     }));
-  };
 
   render() {
-    const { activeStep } = this.state;
+    const { activeStep, registeredUser } = this.state;
 
     return (
       <div className="container">
@@ -49,7 +49,7 @@ class Checkout extends React.Component {
           </Stepper>
           <React.Fragment>
             {activeStep === steps.length ? (
-              <SignUpSuccess />
+              <SignUpSuccess registeredUser={registeredUser}/>
             ) : (
               <React.Fragment>
                 <Form>

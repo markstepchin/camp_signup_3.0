@@ -3,16 +3,15 @@ import { Link } from "react-router-dom";
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-const SignUpSuccess = () => (
+import Summary from "./Summary";
+
+const SignUpSuccess = ({ registeredUser: { startDate, endDate, firstName, lastName, email } }) => (
   <React.Fragment>
     <div className="form-spacer">
       <Typography variant="h5" gutterBottom>
-        Thank you for your order.
+        Thanks {firstName} {lastName}!
       </Typography>
-      <Typography variant="subtitle1">
-        Your order number is #2001539. We have emailed your order confirmation, and will
-        send you an update when your order has shipped.
-      </Typography>
+      <Summary user={{ startDate, endDate, firstName, lastName, email }}/>
     </div>
     <div className='button-container'>
       <Link to="/" style={{textDecoration: 'none'}}>
