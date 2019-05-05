@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Typography from "@material-ui/core/Typography";
 import { calcNumDays, calcCost } from "../Utils";
 import { COST_PER_DAY } from "../Constants";
@@ -14,26 +14,26 @@ const Payment = ({ visible }) =>
     </form>  
   : null;
 
-const Summary = () => (
-  <FormContext.Consumer>
-    {({ data:  { startDate, endDate, firstName, lastName, email } }) => (
-      <React.Fragment>
-        <Typography variant="h6" gutterBottom>
-          Summary
-        </Typography>
-        <h5>Personal Details</h5>
-        Name: {firstName.value} {lastName.value}<br />
-        Email: {email.value}
+const Summary = () => {
+  const { data: { values: { firstName, lastName, email, startDate, endDate } } } = useContext(FormContext);
 
-        <h5>Payment Details</h5>
-        July {getDay(startDate.value)}-{getDay(endDate.value)}<br />
-        {calcNumDays(startDate.value, endDate.value)} days<br />
-        cost/day: ${COST_PER_DAY}
-        <h4>Total Cost: ${calcCost(startDate.value, endDate.value)}</h4>
-      </React.Fragment>
-    )}
-  </FormContext.Consumer>
-);
+  return (
+    <>
+      <Typography variant="h6" gutterBottom>
+        Summary
+      </Typography>
+      <h5>Personal Details</h5>
+      Name: {firstName} {lastName}<br />
+      Email: {email}
+
+      <h5>Payment Details</h5>
+      July {getDay(startDate)}-{getDay(endDate)}<br />
+      {calcNumDays(startDate, endDate)} days<br />
+      cost/day: ${COST_PER_DAY}
+      <h4>Total Cost: ${calcCost(startDate, endDate)}</h4>
+    </>
+  )
+}
 
 const getDay = day => {
   if (day !== "") {
