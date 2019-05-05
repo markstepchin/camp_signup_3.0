@@ -6,7 +6,7 @@ const SignOutButton = ({ firebase }) => (
   <Button
       variant="contained"
       color="primary"
-      onClick={() => firebase.doSignOut()}
+      onClick={firebase.doSignOut}
     >
       Sign out
   </Button>
