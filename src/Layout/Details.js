@@ -67,7 +67,7 @@ const Header = () => (
           variant="contained"
           color="primary"
         >
-          Register
+          Sign Up!
         </Button>
       </Link>
     </div>
