@@ -1,3 +1,11 @@
+html, body {
+  height: 100%;
+}
+
+#root {
+  height: 100%
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -83,7 +91,7 @@ body {
   background-color: rgb(243, 243, 243);
   color: rgba(0, 0, 0, 0.54);
 
-  height: 5rem;
+  padding: 2.5rem;
   width: 100%;
   margin-top: 5rem;
 
@@ -101,7 +109,7 @@ body {
 
 .copyrite {
   font-size: .7rem;
-  margin-top: .5rem;
+  margin-top: 1rem;
 }
 
 /* Media Queries */
