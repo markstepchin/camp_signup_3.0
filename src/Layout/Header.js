@@ -6,7 +6,7 @@ import { NAME } from "../constants/CampDetails";
 
 const Header = () => (
   <div className="header">
-    <h2 >{NAME}</h2>
+    <h2>{NAME}</h2>
     <Link to={CHECKOUT} style={{textDecoration: 'none'}}>
       <Button
         variant="contained"
