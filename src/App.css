@@ -97,6 +97,12 @@
 .form-field {
   margin-top: 1rem
 }
+
+.credit-card-form {
+  border-bottom: 2px solid #303f9f;
+  padding-bottom: .5rem;
+  transition: transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+}
 /*********************** END Checkout Form ***********************/
 
 body {
@@ -111,6 +117,12 @@ h2 {
 h3 {
   font-weight: 700;
   color: rgba(0,0,0,.75);
+}
+
+.error-text {
+  color: #f44336;
+  font-size: 0.8rem;
+  margin-top: 8px;
 }
 
 /*********************** START Media Queries ***********************/

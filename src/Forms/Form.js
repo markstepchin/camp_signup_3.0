@@ -1,4 +1,5 @@
 import React, { Component, createContext } from "react";
+import { injectStripe } from 'react-stripe-elements';
 import { withRouter } from "react-router-dom";
 import produce from "immer";
 import { compose } from "recompose";
@@ -40,7 +41,8 @@ class Form extends Component {
     errors: {
       firstName: undefined,
       lastName: undefined,
-      email: undefined
+      email: undefined,
+      creditCard: undefined
     },
     validations: {
       firstName: {
@@ -98,9 +100,29 @@ class Form extends Component {
 
   handleBlur = ({ target: { name } }) => this.validateField(name);
 
-  handleRegistration = handleNext => {
+  handleRegistration = async (handleNext) => {
     const { startDate, endDate, firstName, lastName, email } = this.state.values;
 
+    //charging the card
+    let failed = false;
+    try {
+      let res = await this.props.stripe.createToken({ name: this.state.values.lastName});
+      
+      if (!res.token) {
+        failed = true;
+        this.setState(
+          produce(draft => {
+            draft.errors.creditCard = res.error.message
+          })
+        );
+
+        return false
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    //writing to the database
     const userUuid = uuid();
     this.props.firebase.writeUser(userUuid)
       .set({ startDate, endDate, firstName, lastName, email })
@@ -140,5 +162,6 @@ class Form extends Component {
 
 export default compose(
   withRouter,
-  withFirebase
+  withFirebase,
+  injectStripe
 )(Form);

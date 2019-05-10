@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { Elements } from 'react-stripe-elements';
 import { Link } from "react-router-dom";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -51,7 +52,7 @@ class Checkout extends React.Component {
             {activeStep === steps.length ? (
               <SignUpSuccess registeredUser={registeredUser}/>
             ) : (
-              <React.Fragment>
+              <Elements>
                 <Form>
                   <Dates visible={activeStep === Steps.DATES} />
                   <PersonDetails visible={activeStep === Steps.PERSONAL} />
@@ -62,7 +63,7 @@ class Checkout extends React.Component {
                     handleNext={this.handleNext}
                   />
                 </Form>
-              </React.Fragment>
+              </Elements>
             )}
           </React.Fragment>
         </div>
@@ -73,6 +74,7 @@ class Checkout extends React.Component {
 
 const NavigationButtons = ({ activeStep, handleBack, handleNext }) => {
   const { handleRegistration, isValid } = useContext(FormContext);
+  const [submitText, setSubmitText] = useState("Place order");
 
   return (
     <div className='button-container'>
@@ -87,11 +89,17 @@ const NavigationButtons = ({ activeStep, handleBack, handleNext }) => {
       <Button
         variant="contained"
         color="primary"
-        onClick={activeStep === Steps.PAYMENT ? () => handleRegistration(handleNext) : handleNext}
+        onClick={activeStep === Steps.PAYMENT 
+          ? () => {
+            setSubmitText("Processing...")
+            handleRegistration(handleNext)
+              .then(success => !success && setSubmitText("Place order"))
+            }
+          : handleNext}
         style={{marginLeft: '.5rem'}}
         disabled={activeStep === Steps.PERSONAL && !isValid}
       >
-        {activeStep === Steps.PAYMENT ? "Place order" : "Next"}
+        {activeStep === Steps.PAYMENT ? submitText : "Next"}
       </Button>
     </div>
   )
