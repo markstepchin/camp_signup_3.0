@@ -8,6 +8,7 @@ import { pick } from "lodash";
 import uuid from "uuid";
 import { START_DATE, END_DATE } from "../constants/CampDetails";
 import { emailRegex } from "../constants/PatternMatching";
+import { calcCost } from "../Utils"
 export const FormContext = createContext({});
 
 const VALIDATIONS = {
@@ -103,24 +104,26 @@ class Form extends Component {
   handleRegistration = async (handleNext) => {
     const { startDate, endDate, firstName, lastName, email } = this.state.values;
 
-    //charging the card
-    let failed = false;
-    try {
-      let res = await this.props.stripe.createToken({ name: this.state.values.lastName});
+    let res = await this.props.stripe.createToken({ name: this.state.values.lastName});
       
-      if (!res.token) {
-        failed = true;
-        this.setState(
-          produce(draft => {
-            draft.errors.creditCard = res.error.message
-          })
-        );
-
-        return false
-      }
-    } catch (error) {
-      console.log(error);
+    //on failure
+    if (res.error) {
+      this.setState(
+        produce(draft => {
+          draft.errors.creditCard = res.error.message
+        })
+      );
+      return false
     }
+
+    //on success
+    // let response = await fetch("/charge", {
+    //   method: "POST",
+    //   headers: {"Content-Type": "text/plain"},
+    //   body: { token: res.token.id, amount: calcCost(startDate, endDate) }
+    // });
+    
+    // console.log("response", response);
 
     //writing to the database
     const userUuid = uuid();
