@@ -8,32 +8,44 @@ import "./App.css";
 import { withAuthentication } from "./components/Session";
 import { EmptyFooter, LandingPageFooter, SignInFooter, SignOutFooter } from "./Layout/Footers";
 import { LANDING, CHECKOUT, SIGN_IN, ADMIN } from "./constants/Routes";
+import Header from "./Layout/Header";
 
 const App = () => (
   <Router>
     <Switch>
       <Route path={CHECKOUT} component={() => 
         <>
-          <Checkout />
+          <PageContent>
+            <Checkout />
+          </PageContent>
           <EmptyFooter />
         </>}/>
       <Route path={SIGN_IN} component={() => 
         <>
-          <SignIn />
+          <PageContent>
+            <SignIn />
+          </PageContent>
           <SignInFooter />
         </>}/>
       <Route path={ADMIN} component={() =>
         <>
-          <Admin />
+          <PageContent>
+            <Admin />
+          </PageContent>
           <SignOutFooter />
         </>} />
       <Route path={LANDING} component={() =>
         <>
-          <Details />
+          <Header />
+          <PageContent>
+            <Details />
+          </PageContent>
           <LandingPageFooter />
         </>} />
     </Switch>
   </Router>
 );
+
+const PageContent = ({children}) => <div className="page-content">{children}</div>
 
 export default withAuthentication(App);

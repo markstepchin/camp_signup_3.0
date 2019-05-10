@@ -11,14 +11,17 @@ const PersonalDetails = ({ visible }) =>
       <Input 
         name="firstName"
         label="First Name *"
+        type="text"
       />
       <Input 
         name="lastName"
         label="Last Name *"
+        type="text"
       />
       <Input
         name="email"
         label="Email *"
+        type="email"
       /> 
     </form> 
   : null;
