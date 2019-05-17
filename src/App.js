@@ -35,17 +35,18 @@ const App = () => (
           <SignOutFooter />
         </>} />
       <Route path={LANDING} component={() =>
-        <>
+        <Page>
           <Header />
           <PageContent>
             <Details />
           </PageContent>
           <LandingPageFooter />
-        </>} />
+        </Page>} />
     </Switch>
   </Router>
 );
 
-const PageContent = ({children}) => <div className="page-content">{children}</div>
+const PageContent = ({children}) => <div className="page-content">{children}</div>;
+const Page = ({children}) => <div className="page">{children}</div>
 
 export default withAuthentication(App);
