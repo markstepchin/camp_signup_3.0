@@ -21,19 +21,19 @@ const App = () => (
           <EmptyFooter />
         </>}/>
       <Route path={SIGN_IN} component={() => 
-        <>
+        <Page>
           <PageContent>
             <SignIn />
           </PageContent>
           <SignInFooter />
-        </>}/>
+        </Page>}/>
       <Route path={ADMIN} component={() =>
-        <>
+        <Page>
           <PageContent>
             <Admin />
           </PageContent>
           <SignOutFooter />
-        </>} />
+        </Page>} />
       <Route path={LANDING} component={() =>
         <Page>
           <Header />
