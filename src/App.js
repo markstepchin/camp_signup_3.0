@@ -14,12 +14,12 @@ const App = () => (
   <Router>
     <Switch>
       <Route path={CHECKOUT} component={() => 
-        <>
+        <Page>
           <PageContent>
             <Checkout />
           </PageContent>
           <EmptyFooter />
-        </>}/>
+        </Page>}/>
       <Route path={SIGN_IN} component={() => 
         <Page>
           <PageContent>
