@@ -8,7 +8,7 @@ import { pick } from "lodash";
 import uuid from "uuid";
 import { START_DATE, END_DATE } from "../constants/CampDetails";
 import { emailRegex } from "../constants/PatternMatching";
-import { calcCost } from "../Utils"
+import { calcCost } from "../Utils";
 export const FormContext = createContext({});
 
 const VALIDATIONS = {
@@ -115,15 +115,6 @@ class Form extends Component {
       );
       return false
     }
-
-    //on success
-    // let response = await fetch("/charge", {
-    //   method: "POST",
-    //   headers: {"Content-Type": "text/plain"},
-    //   body: { token: res.token.id, amount: calcCost(startDate, endDate) }
-    // });
-    
-    // console.log("response", response);
 
     //writing to the database
     const userUuid = uuid();
