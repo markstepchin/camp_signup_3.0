@@ -6,11 +6,8 @@ Link to other code you're particularly proud of.
 Link to your resume or public profile.
 Link to to the hosted application where applicable.
 
-#Camp Signup App
-
-see the live app at https://flamboyant-snyder-919255.netlify.com/
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##Camp Signup App
+Check out the [live app](https://flamboyant-snyder-919255.netlify.com/)
 
 ## Available Scripts
 
