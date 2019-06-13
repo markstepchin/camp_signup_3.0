@@ -1,3 +1,15 @@
+Description of the problem and solution.
+Whether the solution focuses on back-end, front-end or if it's full stack.
+Reasoning behind your technical choices, including architectural.
+Trade-offs you might have made, anything you left out, or what you might do differently if you were to spend additional time on the project.
+Link to other code you're particularly proud of.
+Link to your resume or public profile.
+Link to to the hosted application where applicable.
+
+#Camp Signup App
+
+see the live app at https://flamboyant-snyder-919255.netlify.com/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
