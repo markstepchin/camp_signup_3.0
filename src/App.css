@@ -124,7 +124,7 @@ h3 {
 
 /*********************** START Media Queries ***********************/
 @media only screen and (max-width: 480px) {
-  .paper {
+  .paper, .page-content {
     width: calc(100% - 1rem);
   }
 }
