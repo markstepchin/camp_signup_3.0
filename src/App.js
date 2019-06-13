@@ -10,41 +10,49 @@ import { EmptyFooter, LandingPageFooter, SignInFooter, SignOutFooter } from "./L
 import { LANDING, CHECKOUT, SIGN_IN, ADMIN } from "./constants/Routes";
 import Header from "./Layout/Header";
 
-const App = () => (
-  <Router>
-    <Switch>
-      <Route path={CHECKOUT} component={() => 
-        <Page>
-          <PageContent>
-            <Checkout />
-          </PageContent>
-          <EmptyFooter />
-        </Page>}/>
-      <Route path={SIGN_IN} component={() => 
-        <Page>
-          <PageContent>
-            <SignIn />
-          </PageContent>
-          <SignInFooter />
-        </Page>}/>
-      <Route path={ADMIN} component={() =>
-        <Page>
-          <PageContent>
-            <Admin />
-          </PageContent>
-          <SignOutFooter />
-        </Page>} />
-      <Route path={LANDING} component={() =>
-        <Page>
-          <Header />
-          <PageContent>
-            <Details />
-          </PageContent>
-          <LandingPageFooter />
-        </Page>} />
-    </Switch>
-  </Router>
-);
+class App extends React.Component {
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+
+  render() {
+    return (
+      <Router>
+        <Switch>
+          <Route path={CHECKOUT} component={() => 
+            <Page>
+              <PageContent>
+                <Checkout />
+              </PageContent>
+              <EmptyFooter />
+            </Page>}/>
+          <Route path={SIGN_IN} component={() => 
+            <Page>
+              <PageContent>
+                <SignIn />
+              </PageContent>
+              <SignInFooter />
+            </Page>}/>
+          <Route path={ADMIN} component={() =>
+            <Page>
+              <PageContent>
+                <Admin />
+              </PageContent>
+              <SignOutFooter />
+            </Page>} />
+          <Route path={LANDING} component={() =>
+            <Page>
+              <Header />
+              <PageContent>
+                <Details />
+              </PageContent>
+              <LandingPageFooter />
+            </Page>} />
+        </Switch>
+      </Router>
+    )
+  }
+}
 
 const PageContent = ({children}) => <div className="page-content">{children}</div>;
 const Page = ({children}) => <div className="page">{children}</div>
