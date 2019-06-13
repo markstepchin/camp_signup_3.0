@@ -10,3 +10,6 @@ HTML, CSS, ReactJS, NodeJS, ExpressJS, Firebase Realtime Database, NPM, create-r
 ### Structure
 
 The frontend is build with ReactJS. The user data is stored in a Firebase Realtime Database. The payment processing code is in an ExpressJS app running on a Firebase Cloud Function.
+
+### Code that I'm proud of
+The inputs in the app are controlled components, with the [Form Component](https://github.com/markstepchin/camp_signup_3.0/blob/master/src/Forms/Form.js) maintaining the state, handling mutations, and doing validations
