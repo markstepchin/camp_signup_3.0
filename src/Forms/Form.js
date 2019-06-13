@@ -1,4 +1,5 @@
 import React, { Component, createContext } from "react";
+import { injectStripe } from 'react-stripe-elements';
 import { withRouter } from "react-router-dom";
 import produce from "immer";
 import { compose } from "recompose";
@@ -7,6 +8,7 @@ import { pick } from "lodash";
 import uuid from "uuid";
 import { START_DATE, END_DATE } from "../constants/CampDetails";
 import { emailRegex } from "../constants/PatternMatching";
+import { calcCost } from "../Utils"
 export const FormContext = createContext({});
 
 const VALIDATIONS = {
@@ -40,7 +42,8 @@ class Form extends Component {
     errors: {
       firstName: undefined,
       lastName: undefined,
-      email: undefined
+      email: undefined,
+      creditCard: undefined
     },
     validations: {
       firstName: {
@@ -98,9 +101,31 @@ class Form extends Component {
 
   handleBlur = ({ target: { name } }) => this.validateField(name);
 
-  handleRegistration = handleNext => {
+  handleRegistration = async (handleNext) => {
     const { startDate, endDate, firstName, lastName, email } = this.state.values;
 
+    let res = await this.props.stripe.createToken({ name: this.state.values.lastName});
+      
+    //on failure
+    if (res.error) {
+      this.setState(
+        produce(draft => {
+          draft.errors.creditCard = res.error.message
+        })
+      );
+      return false
+    }
+
+    //on success
+    // let response = await fetch("/charge", {
+    //   method: "POST",
+    //   headers: {"Content-Type": "text/plain"},
+    //   body: { token: res.token.id, amount: calcCost(startDate, endDate) }
+    // });
+    
+    // console.log("response", response);
+
+    //writing to the database
     const userUuid = uuid();
     this.props.firebase.writeUser(userUuid)
       .set({ startDate, endDate, firstName, lastName, email })
@@ -140,5 +165,6 @@ class Form extends Component {
 
 export default compose(
   withRouter,
-  withFirebase
+  withFirebase,
+  injectStripe
 )(Form);
