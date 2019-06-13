@@ -9,7 +9,7 @@ const startDate = moment(START_DATE);
 const endDate = moment(END_DATE);
 
 const Details = () => (
-  <React.Fragment>
+  <>
     <CssBaseline />
     <div className="description">
       <h3>{HEADING}</h3>
@@ -43,7 +43,7 @@ const Details = () => (
         <span><i>(or ${COST_PER_DAY} per day)</i></span>
       </div>
     </div>
-  </React.Fragment>
+  </>
 );
 
 export default Details;
