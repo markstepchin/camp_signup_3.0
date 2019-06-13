@@ -6,7 +6,7 @@ Link to other code you're particularly proud of.
 Link to your resume or public profile.
 Link to to the hosted application where applicable.
 
-##Camp Signup App
+## Camp Signup App
 Check out the [live app](https://flamboyant-snyder-919255.netlify.com/)
 
 ## Available Scripts
