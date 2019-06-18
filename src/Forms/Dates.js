@@ -36,21 +36,9 @@ const Dates = ({ visible }) => {
           options={dateOptions}
           isOptionDisabled={isOptionDisabled}
         />
-        <br />
-        <DisplayCost />
       </form>  
     : null
   )
 }
-
-const DisplayCost = () => {
-  const { data: { values: { startDate, endDate } } } = useContext(FormContext);
-
-  return (
-    <>
-      <p>cost/day: $25</p>
-      <p>{`Total Cost: $${calcCost(startDate, endDate)}`}</p>
-    </>
-  )}
 
 export default Dates;
