@@ -9,7 +9,9 @@ import uuid from "uuid";
 import { START_DATE, END_DATE } from "../constants/CampDetails";
 import { emailRegex } from "../constants/PatternMatching";
 import { calcCost } from "../Utils";
+import { CURRENCY } from "../constants/Price";
 export const FormContext = createContext({});
+const FIREBASE_FUNCTION = 'https://us-central1-campsignup3.cloudfunctions.net/charge/';
 
 const VALIDATIONS = {
   required: value => {
@@ -105,6 +107,7 @@ class Form extends Component {
     const { startDate, endDate, firstName, lastName, email } = this.state.values;
 
     let res = await this.props.stripe.createToken({ name: this.state.values.lastName});
+    const { token } = res;
       
     //on failure
     if (res.error) {
@@ -115,6 +118,10 @@ class Form extends Component {
       );
       return false
     }
+
+    //stripe needs cost in cents
+    const cost = calcCost(startDate, endDate) * 100;
+    const data = this.charge(token, cost);
 
     //writing to the database
     const userUuid = uuid();
@@ -127,6 +134,22 @@ class Form extends Component {
           .catch(error => console.log(error))
       )
       .catch(error => console.log(error));
+  }
+
+  charge = async(token, amount) => {
+    const res = await fetch(FIREBASE_FUNCTION, {
+        method: 'POST',
+        body: JSON.stringify({
+            token,
+            charge: {
+                amount,
+                currency: CURRENCY,
+            },
+        }),
+    });
+    const data = await res.json();
+    data.body = JSON.parse(data.body);
+    return data;
   }
 
   handleSignIn = async () => {
