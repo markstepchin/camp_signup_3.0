@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
-import TextField from "@material-ui/core/TextField";
-import { FormContext } from "./Form";
+import React, { useContext } from 'react';
+import TextField from '@material-ui/core/TextField';
+import { FormContext } from './Form';
 
-export const Input = ({label, name, type}) => (
+export const Input = ({ label, name, type }) => (
   <FormContext.Consumer>
-    {({data, handleChange, handleBlur}) => (
+    {({ data, handleChange, handleBlur }) => (
       <div className="form-field">
-        <TextField 
+        <TextField
           name={name}
           label={label}
           type={type}
@@ -23,20 +23,21 @@ export const Input = ({label, name, type}) => (
 );
 
 export const Select = ({ name, label, options, isOptionDisabled }) => {
-  const { data: { values }, handleChange } = useContext(FormContext);
+  const {
+    data: { values },
+    handleChange,
+  } = useContext(FormContext);
 
   return (
     <>
-      <p style={{fontSize: '.75rem', color: 'rgba(0, 0, 0, 0.54)'}}>{label}</p>
-      <select
-        value={values[name]}
-        onChange={handleChange}
-        name={name}
-        style={{fontSize: '1rem', width: '100%'}}
-      >
-        {options
-          .map(option => <option disabled={isOptionDisabled(option.value, name)} value={option.value} key={option.value}>{option.display}</option>)}
+      <p style={{ fontSize: '.75rem', color: 'rgba(0, 0, 0, 0.54)' }}>{label}</p>
+      <select value={values[name]} onChange={handleChange} name={name} style={{ fontSize: '1rem', width: '100%' }}>
+        {options.map(option => (
+          <option disabled={isOptionDisabled(option.value, name)} value={option.value} key={option.value}>
+            {option.display}
+          </option>
+        ))}
       </select>
     </>
-  )
-}
+  );
+};
