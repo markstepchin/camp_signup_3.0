@@ -1,23 +1,61 @@
-// The Cloud Functions for Firebase SDK to create Cloud Functions and setup triggers.
 const functions = require('firebase-functions');
-
-// The Firebase Admin SDK to access the Firebase Realtime Database.
 const admin = require('firebase-admin');
-admin.initializeApp();
+const express = require('express');
+const cors = require('cors')({origin: true});
+const app = express();
 
-// Create and Deploy Your First Cloud Functions
-// https://firebase.google.com/docs/functions/write-firebase-functions
-exports.helloWorld = functions.https.onRequest((request, response) => {
- response.send("Hello from Firebase!");
+admin.initializeApp(functions.config().firebase);
+
+// TODO: Remember to set token using >> firebase functions:config:set stripe.token="SECRET_STRIPE_TOKEN_HERE"
+const stripe = require('stripe')(functions.config().stripe.token);
+
+function charge(req, res) {
+  const body = JSON.parse(req.body);
+  const token = body.token.id;
+  const amount = body.charge.amount;
+  const currency = body.charge.currency;
+
+  console.log("body: ",req.body)
+
+  // Charge card
+  stripe.charges.create({
+      amount,
+      currency,
+      description: 'Firebase Example',
+      source: token,
+  }).then(charge => 
+      send(res, 200, {
+          message: 'Success',
+          charge,
+      })
+  ).catch(err => {
+      console.log(err);
+      send(res, 500, {
+          error: err.message,
+      });
+  });
+}
+
+function send(res, code, body) {
+  res.send({
+      statusCode: code,
+      headers: {'Access-Control-Allow-Origin': '*'},
+      body: JSON.stringify(body),
+  });
+}
+
+app.use(cors);
+app.post('/', (req, res) => {
+
+  // Catch any unexpected errors to prevent crashing
+  try {
+      charge(req, res);
+  } catch(e) {
+      console.log(e);
+      send(res, 500, {
+          error: `The server received an unexpected error. Please try again and contact the site admin if the error persists.`,
+      });
+  }
 });
 
-// Take the text parameter passed to this HTTP endpoint and insert it into the
-// Realtime Database under the path /messages/:pushId/original
-exports.addMessage = functions.https.onRequest(async (req, res) => {
-  // Grab the text parameter.
-  const original = req.query.text;
-  // Push the new message into the Realtime Database using the Firebase Admin SDK.
-  const snapshot = await admin.database().ref('/messages').push({original: original});
-  // Redirect with 303 SEE OTHER to the URL of the pushed object in the Firebase console.
-  res.redirect(303, snapshot.ref.toString());
-});
+exports.charge = functions.https.onRequest(app);

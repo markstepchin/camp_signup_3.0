@@ -1,9 +1,15 @@
-import React from "react";
-import { withAuthorization } from "../components/Session"; 
+import React from 'react';
+import { withAuthorization } from '../components/Session';
+import UserList from './UserList';
 
-const DashBoard = () => (
-  <h1>DashBoard</h1>
-);
+const DashBoard = () => {
+  return (
+    <>
+      <h1>DashBoard</h1>
+      <UserList />
+    </>
+  );
+};
 
 const condition = authUser => !!authUser;
 

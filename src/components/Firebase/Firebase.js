@@ -18,9 +18,8 @@ class Firebase {
     this.auth = app.auth();
     this.db = app.database();
   }
-  
-  // *** Auth API ***
 
+  // *** Auth API ***
   doCreateUserWithEmailAndPassword = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password);
 
@@ -31,12 +30,15 @@ class Firebase {
 
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
 
-  doPasswordUpdate = password =>
-    this.auth.currentUser.updatePassword(password);
+  doPasswordUpdate = password => this.auth.currentUser.updatePassword(password);
 
   // *** User API ***
   writeUser = uuid => this.db.ref(`users/${uuid}`);
+
   readUser = uuid => this.db.ref(`users/${uuid}`).once('value');
+
+  readUsers = () => this.db.ref(`users`);
+
   users = () => this.db.ref('users');
 }
 

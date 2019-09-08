@@ -1,49 +1,52 @@
-import React, { Component, createContext } from "react";
+import React, { Component, createContext } from 'react';
 import { injectStripe } from 'react-stripe-elements';
-import { withRouter } from "react-router-dom";
-import produce from "immer";
-import { compose } from "recompose";
-import { withFirebase } from "../components/Firebase";
-import { pick } from "lodash";
-import uuid from "uuid";
-import { START_DATE, END_DATE } from "../constants/CampDetails";
-import { emailRegex } from "../constants/PatternMatching";
-import { calcCost } from "../Utils";
+import { withRouter } from 'react-router-dom';
+import produce from 'immer';
+import { compose } from 'recompose';
+import { pick } from 'lodash';
+import uuid from 'uuid';
+import { withFirebase } from '../components/Firebase';
+import { START_DATE, END_DATE } from '../constants/CampDetails';
+import { emailRegex } from '../constants/PatternMatching';
+import { calcCost } from '../Utils';
+import { CURRENCY } from '../constants/Price';
+
 export const FormContext = createContext({});
+const FIREBASE_FUNCTION = 'https://us-central1-campsignup3.cloudfunctions.net/charge/';
 
 const VALIDATIONS = {
   required: value => {
     if (!value.toLowerCase().trim()) {
-      throw new Error("field required");
+      throw new Error('field required');
     }
 
     return true;
   },
   pattern: (value, validRegex) => {
     if (!validRegex.test(value.toLowerCase().trim())) {
-      throw new Error("invalid email");
+      throw new Error('invalid email');
     }
 
     return true;
   },
-}
+};
 
 class Form extends Component {
   state = {
     values: {
       startDate: START_DATE,
       endDate: END_DATE,
-      firstName: "",
-      lastName: "",
-      email: "",
-      adminEmail: "admin@email.com",
-      password: "password123"
+      firstName: '',
+      lastName: '',
+      email: '',
+      adminEmail: 'admin@email.com',
+      password: 'password123',
     },
     errors: {
       firstName: undefined,
       lastName: undefined,
       email: undefined,
-      creditCard: undefined
+      creditCard: undefined,
     },
     validations: {
       firstName: {
@@ -54,9 +57,9 @@ class Form extends Component {
       },
       email: {
         required: true,
-        pattern: emailRegex  
-      }
-    }
+        pattern: emailRegex,
+      },
+    },
   };
 
   get isValid() {
@@ -69,10 +72,11 @@ class Form extends Component {
   handleChange = ({ target: { name, value } }) => {
     this.setState(
       produce(draft => {
-        draft.values[name] = value.trim()
-      }), () => this.validateField(name)
-    )
-  }
+        draft.values[name] = value.trim();
+      }),
+      () => this.validateField(name)
+    );
+  };
 
   validateField = name => {
     const value = this.state.values[name];
@@ -86,53 +90,76 @@ class Form extends Component {
 
         this.setState(
           produce(draft => {
-            draft.errors[name] = undefined
+            draft.errors[name] = undefined;
           })
-        )
-      })
-    } catch(error) {
+        );
+      });
+    } catch (error) {
       this.setState(
         produce(draft => {
-          draft.errors[name] = error.message
+          draft.errors[name] = error.message;
         })
       );
     }
-  }
+  };
 
   handleBlur = ({ target: { name } }) => this.validateField(name);
 
-  handleRegistration = async (handleNext) => {
+  handleRegistration = async handleNext => {
     const { startDate, endDate, firstName, lastName, email } = this.state.values;
 
-    let res = await this.props.stripe.createToken({ name: this.state.values.lastName});
-      
-    //on failure
+    const res = await this.props.stripe.createToken({ name: this.state.values.lastName });
+    const { token } = res;
+
+    // on failure
     if (res.error) {
       this.setState(
         produce(draft => {
-          draft.errors.creditCard = res.error.message
+          draft.errors.creditCard = res.error.message;
         })
       );
-      return false
+      return false;
     }
 
-    //writing to the database
+    // stripe needs cost in cents
+    const cost = calcCost(startDate, endDate) * 100;
+    this.charge(token, cost);
+
+    // writing to the database
     const userUuid = uuid();
-    this.props.firebase.writeUser(userUuid)
+    return this.props.firebase
+      .writeUser(userUuid)
       .set({ startDate, endDate, firstName, lastName, email })
-      .then(() => 
-        this.props.firebase.readUser(userUuid)
-          .then(res => res.val())
+      .then(() =>
+        this.props.firebase
+          .readUser(userUuid)
+          .then(result => result.val())
           .then(user => handleNext(user))
           .catch(error => console.log(error))
       )
       .catch(error => console.log(error));
-  }
+  };
+
+  charge = async (token, amount) => {
+    const res = await fetch(FIREBASE_FUNCTION, {
+      method: 'POST',
+      body: JSON.stringify({
+        token,
+        charge: {
+          amount,
+          currency: CURRENCY,
+        },
+      }),
+    });
+    const data = await res.json();
+    data.body = JSON.parse(data.body);
+    return data;
+  };
 
   handleSignIn = async () => {
     const { adminEmail, password } = this.state.values;
-    return this.props.firebase.doSignInWithEmailAndPassword(adminEmail, password)
-  }
+    return this.props.firebase.doSignInWithEmailAndPassword(adminEmail, password);
+  };
 
   get value() {
     return {
@@ -141,16 +168,12 @@ class Form extends Component {
       handleBlur: this.handleBlur,
       handleRegistration: this.handleRegistration,
       handleSignIn: this.handleSignIn,
-      isValid: this.isValid
+      isValid: this.isValid,
     };
   }
 
   render() {
-    return (
-      <FormContext.Provider value={this.value}>
-        {this.props.children}
-      </FormContext.Provider>
-    )
+    return <FormContext.Provider value={this.value}>{this.props.children}</FormContext.Provider>;
   }
 }
 
