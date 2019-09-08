@@ -146,6 +146,7 @@ h3 {
   color: #525151;
 
   width: 30rem;
+  position: relative;
 }
 
 .card-name {
@@ -166,6 +167,18 @@ h3 {
   justify-content: flex-end;
   font-size: .8rem;
   color: #7b7b7b;
+}
+
+.delete-btn {
+  position: absolute;
+  top: .5rem;
+  right: 0rem;
+  padding: 1rem;
+
+  border: none;
+  background: transparent;
+  color: rgb(216, 43, 43);
+  font-size: 1rem;
 }
 
 /*********************** END UserList ***********************/

@@ -19,7 +19,7 @@ const UserList = ({ firebase }) => {
         Object.keys(users).map(key => {
           const user = users[key];
 
-          return <UserCard user={user} key={key} />;
+          return <UserCard user={user} key={key} id={key} />;
         })
       ) : (
         <i style={{ color: '#5a5a5a', fontWeight: '300' }}>no registrations yet...</i>
@@ -28,7 +28,7 @@ const UserList = ({ firebase }) => {
   );
 };
 
-const UserCard = ({ user }) => (
+const UserCard = ({ user, id }) => (
   <div className="card">
     <div className="card-name">
       {user.firstName} {user.lastName}
@@ -39,6 +39,9 @@ const UserCard = ({ user }) => (
     </div>
     <i className="card-registered-time">{moment(user.time).format('h:mm:ss, D/M/YYYY')}</i>
     <div>{user.date}</div>
+    <button className="delete-btn" onClick={() =>alert(id)} type="button">
+      <i className="fas fa-trash" />
+    </button>
   </div>
 );
 
