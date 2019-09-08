@@ -1,21 +1,35 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import { CHECKOUT } from "../constants/Routes";
-import { NAME } from "../constants/CampDetails";
+import SignOutButton from '../components/SignOutButton';
+import { CHECKOUT, LANDING } from '../constants/Routes';
+import { NAME } from '../constants/CampDetails';
 
-const Header = () => (
+export const LandingHeader = () => (
   <div className="header">
     <h2>{NAME}</h2>
-    <Link to={CHECKOUT} style={{textDecoration: 'none'}}>
-      <Button
-        variant="contained"
-        color="primary"
-      >
+    <Link to={CHECKOUT} style={{ textDecoration: 'none' }}>
+      <Button variant="contained" color="primary">
         Sign Up!
       </Button>
     </Link>
   </div>
 );
 
-export default Header;
+export const DashboardHeader = () => (
+  <div className="header">
+    <h2>{NAME}</h2>
+    <SignOutButton />
+  </div>
+);
+
+export const LoginHeader = () => (
+  <div className="header">
+    <h2>{NAME}</h2>
+    <Link to={LANDING} style={{ textDecoration: 'none' }}>
+      <Button variant="contained" color="primary">
+        Camp Info
+      </Button>
+    </Link>
+  </div>
+);
