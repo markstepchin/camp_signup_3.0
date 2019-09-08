@@ -5,6 +5,7 @@ import Checkout from './Forms/Checkout';
 import Details from './Layout/Details';
 import SignIn from './Forms/SignIn';
 import Admin from './Layout/DashBoard';
+import ScrollToTop from './ScrollToTop';
 import './App.css';
 import { withAuthentication } from './components/Session';
 import { EmptyFooter, LandingPageFooter, SignInFooter, SignOutFooter } from './Layout/Footers';
@@ -13,55 +14,57 @@ import { LandingHeader, DashboardHeader, LoginHeader } from './Layout/Header';
 
 const App = () => (
   <Router>
-    <Switch>
-      <Route
-        path={CHECKOUT}
-        component={() => (
-          <Page>
-            <PageContent>
-              <Checkout />
-            </PageContent>
-            <EmptyFooter />
-          </Page>
-        )}
-      />
-      <Route
-        path={SIGN_IN}
-        component={() => (
-          <Page>
-            <LoginHeader />
-            <PageContent>
-              <SignIn />
-            </PageContent>
-            <SignInFooter />
-          </Page>
-        )}
-      />
-      <Route
-        path={ADMIN}
-        component={() => (
-          <Page>
-            <DashboardHeader />
-            <PageContent>
-              <Admin />
-            </PageContent>
-            <SignOutFooter />
-          </Page>
-        )}
-      />
-      <Route
-        path={LANDING}
-        component={() => (
-          <Page>
-            <LandingHeader />
-            <PageContent>
-              <Details />
-            </PageContent>
-            <LandingPageFooter />
-          </Page>
-        )}
-      />
-    </Switch>
+    <ScrollToTop>
+      <Switch>
+        <Route
+          path={CHECKOUT}
+          component={() => (
+            <Page>
+              <PageContent>
+                <Checkout />
+              </PageContent>
+              <EmptyFooter />
+            </Page>
+          )}
+        />
+        <Route
+          path={SIGN_IN}
+          component={() => (
+            <Page>
+              <LoginHeader />
+              <PageContent>
+                <SignIn />
+              </PageContent>
+              <SignInFooter />
+            </Page>
+          )}
+        />
+        <Route
+          path={ADMIN}
+          component={() => (
+            <Page>
+              <DashboardHeader />
+              <PageContent>
+                <Admin />
+              </PageContent>
+              <SignOutFooter />
+            </Page>
+          )}
+        />
+        <Route
+          path={LANDING}
+          component={() => (
+            <Page>
+              <LandingHeader />
+              <PageContent>
+                <Details />
+              </PageContent>
+              <LandingPageFooter />
+            </Page>
+          )}
+        />
+      </Switch>
+    </ScrollToTop>
   </Router>
 );
 
