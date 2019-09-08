@@ -59,6 +59,12 @@ class Form extends Component {
         required: true,
         pattern: emailRegex,
       },
+      adminEmail: {
+        required: true,
+      },
+      password: {
+        required: true,
+      },
     },
   };
 
