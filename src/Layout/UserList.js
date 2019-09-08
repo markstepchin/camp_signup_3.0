@@ -39,7 +39,14 @@ const UserCard = ({ user, id }) => (
     </div>
     <i className="card-registered-time">{moment(user.time).format('h:mm:ss, D/M/YYYY')}</i>
     <div>{user.date}</div>
-    <button className="delete-btn" onClick={() =>alert(id)} type="button">
+    <button
+      className="delete-btn"
+      onClick={() => {
+        const confirm = window.confirm(id);
+        console.log(confirm);
+      }}
+      type="button"
+    >
       <i className="fas fa-trash" />
     </button>
   </div>
