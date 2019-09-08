@@ -135,7 +135,7 @@ class Form extends Component {
     const userUuid = uuid();
     return this.props.firebase
       .writeUser(userUuid)
-      .set({ startDate, endDate, firstName, lastName, email, time: Date.now() })
+      .set({ startDate, endDate, firstName, lastName, email, time: Date.now(), deleted: false })
       .then(() =>
         this.props.firebase
           .readUser(userUuid)

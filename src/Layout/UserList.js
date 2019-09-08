@@ -3,7 +3,7 @@ import moment from 'moment';
 import { withFirebase } from '../components/Firebase';
 
 const UserList = ({ firebase }) => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState();
 
   useEffect(() => {
     firebase.readUsers().on('value', snapshot => {
@@ -13,13 +13,16 @@ const UserList = ({ firebase }) => {
     return () => firebase.readUsers().off();
   }, []);
 
+  // filtering out deleted users
+  const filteredUsers = users && Object.keys(users).filter(key => !users[key].deleted);
+
   return (
     <>
-      {users ? (
-        Object.keys(users).map(key => {
+      {filteredUsers && filteredUsers.length > 1 ? (
+        filteredUsers.map(key => {
           const user = users[key];
 
-          return <UserCard user={user} key={key} id={key} />;
+          return <UserCard user={user} key={key} id={key} firebase={firebase} />;
         })
       ) : (
         <i style={{ color: '#5a5a5a', fontWeight: '300' }}>no registrations yet...</i>
@@ -28,7 +31,7 @@ const UserList = ({ firebase }) => {
   );
 };
 
-const UserCard = ({ user, id }) => (
+const UserCard = ({ user, id, firebase }) => (
   <div className="card">
     <div className="card-name">
       {user.firstName} {user.lastName}
@@ -43,7 +46,10 @@ const UserCard = ({ user, id }) => (
       className="delete-btn"
       onClick={() => {
         const confirm = window.confirm(id);
-        console.log(confirm);
+
+        if (confirm) {
+          firebase.deleteUser(id);
+        }
       }}
       type="button"
     >

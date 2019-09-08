@@ -40,6 +40,8 @@ class Firebase {
   readUsers = () => this.db.ref(`users`);
 
   users = () => this.db.ref('users');
+
+  deleteUser = uuid => this.db.ref(`users/${uuid}`).update({ deleted: true });
 }
 
 export default Firebase;
