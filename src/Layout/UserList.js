@@ -33,6 +33,7 @@ const UserCard = ({ user }) => (
     <div>
       {formatDate(user.startDate)} - {formatDate(user.endDate)}
     </div>
+    <i className="card-registered-time">{moment(user.date).format('h:m:s, D/M/YYYY')}</i>
   </div>
 );
 
