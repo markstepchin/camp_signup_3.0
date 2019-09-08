@@ -15,11 +15,15 @@ const UserList = ({ firebase }) => {
 
   return (
     <>
-      {Object.keys(users).map(key => {
-        const user = users[key];
+      {users ? (
+        Object.keys(users).map(key => {
+          const user = users[key];
 
-        return <UserCard user={user} key={key} />;
-      })}
+          return <UserCard user={user} key={key} />;
+        })
+      ) : (
+        <i style={{ color: '#5a5a5a', fontWeight: '300' }}>no registrations yet...</i>
+      )}
     </>
   );
 };
@@ -33,7 +37,8 @@ const UserCard = ({ user }) => (
     <div>
       {formatDate(user.startDate)} - {formatDate(user.endDate)}
     </div>
-    <i className="card-registered-time">{moment(user.date).format('h:m:s, D/M/YYYY')}</i>
+    <i className="card-registered-time">{moment(user.time).format('h:mm:ss, D/M/YYYY')}</i>
+    <div>{user.date}</div>
   </div>
 );
 
