@@ -18,7 +18,7 @@ const UserList = ({ firebase }) => {
 
   return (
     <>
-      {filteredUsers && filteredUsers.length > 1 ? (
+      {filteredUsers && filteredUsers.length > 0 ? (
         filteredUsers.map(key => {
           const user = users[key];
 
@@ -45,7 +45,7 @@ const UserCard = ({ user, id, firebase }) => (
     <button
       className="delete-btn"
       onClick={() => {
-        const confirm = window.confirm(id);
+        const confirm = window.confirm(`Are you sure that you want to remove ${user.firstName} ${user.lastName}?`);
 
         if (confirm) {
           firebase.deleteUser(id);
