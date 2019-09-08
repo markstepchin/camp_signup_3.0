@@ -24,16 +24,20 @@ class Checkout extends React.Component {
     registeredUser: {},
   };
 
-  handleNext = registeredUser =>
+  handleNext = registeredUser => {
+    window.scrollTo(0, 0);
     this.setState(state => ({
       activeStep: state.activeStep + 1,
       registeredUser,
     }));
+  };
 
-  handleBack = () =>
+  handleBack = () => {
+    window.scrollTo(0, 0);
     this.setState(state => ({
       activeStep: state.activeStep - 1,
     }));
+  };
 
   render() {
     const { activeStep, registeredUser } = this.state;
@@ -95,12 +99,15 @@ const NavigationButtons = ({ activeStep, handleBack, handleNext }) => {
           activeStep === Steps.PAYMENT
             ? () => {
                 setSubmitText('Processing...');
-                handleRegistration(handleNext).then(success => !success && setSubmitText('Place order'));
+                handleRegistration(handleNext).then(
+                  success => !success && setSubmitText('Place order')
+                );
               }
             : handleNext
         }
         style={{ marginLeft: '.5rem' }}
-        disabled={activeStep === Steps.PERSONAL && !isValid}>
+        disabled={activeStep === Steps.PERSONAL && !isValid}
+      >
         {activeStep === Steps.PAYMENT ? submitText : 'Next'}
       </Button>
     </div>
