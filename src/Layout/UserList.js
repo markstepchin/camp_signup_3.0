@@ -40,7 +40,7 @@ const UserCard = ({ user, id, firebase }) => (
     <div>
       {formatDate(user.startDate)} - {formatDate(user.endDate)}
     </div>
-    <i className="card-registered-time">{moment(user.time).format('h:mm:ss, D/M/YYYY')}</i>
+    <i className="card-registered-time">{moment(user.time).format('H:mm:ss, D/M/YYYY')}</i>
     <div>{user.date}</div>
     <button
       className="delete-btn"
