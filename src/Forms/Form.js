@@ -41,6 +41,7 @@ class Form extends Component {
       email: '',
       adminEmail: 'admin@email.com',
       password: 'password123',
+      paymentOption: '',
     },
     errors: {
       firstName: undefined,
@@ -112,8 +113,40 @@ class Form extends Component {
   handleBlur = ({ target: { name } }) => this.validateField(name);
 
   handleRegistration = async handleNext => {
-    const { startDate, endDate, firstName, lastName, email } = this.state.values;
+    const { startDate, endDate, firstName, lastName, email, paymentOption } = this.state.values;
 
+    if (paymentOption === 'payNow') {
+      const successfullPayment = this.payment(startDate, endDate);
+      if (!successfullPayment) {
+        return false;
+      }
+    }
+
+    // writing to the database
+    const userUuid = uuid();
+    return this.props.firebase
+      .writeUser(userUuid)
+      .set({
+        startDate,
+        endDate,
+        firstName,
+        lastName,
+        email,
+        time: Date.now(),
+        deleted: false,
+        payed: paymentOption === 'payNow',
+      })
+      .then(() =>
+        this.props.firebase
+          .readUser(userUuid)
+          .then(result => result.val())
+          .then(user => handleNext(user))
+          .catch(error => console.log(error))
+      )
+      .catch(error => console.log(error));
+  };
+
+  payment = async (startDate, endDate) => {
     const res = await this.props.stripe.createToken({ name: this.state.values.lastName });
     const { token } = res;
 
@@ -130,20 +163,7 @@ class Form extends Component {
     // stripe needs cost in cents
     const cost = calcCost(startDate, endDate) * 100;
     this.charge(token, cost);
-
-    // writing to the database
-    const userUuid = uuid();
-    return this.props.firebase
-      .writeUser(userUuid)
-      .set({ startDate, endDate, firstName, lastName, email, time: Date.now(), deleted: false })
-      .then(() =>
-        this.props.firebase
-          .readUser(userUuid)
-          .then(result => result.val())
-          .then(user => handleNext(user))
-          .catch(error => console.log(error))
-      )
-      .catch(error => console.log(error));
+    return true;
   };
 
   charge = async (token, amount) => {
@@ -175,6 +195,7 @@ class Form extends Component {
       handleRegistration: this.handleRegistration,
       handleSignIn: this.handleSignIn,
       isValid: this.isValid,
+      paymentOptionSelected: this.state.values.paymentOption !== '',
     };
   }
 

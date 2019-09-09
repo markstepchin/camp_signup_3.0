@@ -77,8 +77,8 @@ class Checkout extends React.Component {
 }
 
 const NavigationButtons = ({ activeStep, handleBack, handleNext }) => {
-  const { handleRegistration, isValid } = useContext(FormContext);
-  const [submitText, setSubmitText] = useState('Place order');
+  const { handleRegistration, isValid, paymentOptionSelected } = useContext(FormContext);
+  const [submitText, setSubmitText] = useState('Place Reservation');
 
   return (
     <div className="button-container">
@@ -100,13 +100,16 @@ const NavigationButtons = ({ activeStep, handleBack, handleNext }) => {
             ? () => {
                 setSubmitText('Processing...');
                 handleRegistration(handleNext).then(
-                  success => !success && setSubmitText('Place order')
+                  success => !success && setSubmitText('Place Reservation')
                 );
               }
             : handleNext
         }
         style={{ marginLeft: '.5rem' }}
-        disabled={activeStep === Steps.PERSONAL && !isValid}
+        disabled={
+          (activeStep === Steps.PERSONAL && !isValid) ||
+          (activeStep === Steps.PAYMENT && !paymentOptionSelected)
+        }
       >
         {activeStep === Steps.PAYMENT ? submitText : 'Next'}
       </Button>
