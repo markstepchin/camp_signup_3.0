@@ -18,13 +18,10 @@ const Details = () => (
         <div className="detail-icons">
           <i className="fas fa-map-marker-alt" />
         </div>
-        <span>Waitts Lake Open Bible Camp</span>
+        <span className="address-title">Waitts Lake Open Bible Camp</span>
         <br />
-        <span>3362 Thompson Rd #D, </span>
-        <br />
-        <span>Valley, WA 99181</span>
-        <br />
-        <div className="address-link-container">
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div>3362 Thompson Rd #D, Valley, WA 99181</div>
           <a
             href="https://www.google.com/maps/place/Waitts+Lake+Open+Bible+Camp/@48.2018545,-117.7937229,17z/data=!3m1!4b1!4m5!3m4!1s0x549df5702f21f67b:0xb41c3589b0070ad5!8m2!3d48.2018509!4d-117.7915342"
             target="_blank"
