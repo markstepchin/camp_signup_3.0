@@ -21,8 +21,7 @@ const Details = () => (
           <div className="detail-icons">
             <span className="fas fa-map-marker-alt" />
           </div>
-          <span className="details-title">Waitts Lake Open Bible Camp</span>
-          <br />
+          <div className="details-title">Waitts Lake Open Bible Camp</div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <div>3362 Thompson Rd #D, Valley, WA 99181</div>
             <a
