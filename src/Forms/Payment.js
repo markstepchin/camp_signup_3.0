@@ -17,7 +17,7 @@ const Payment = ({ visible }) => {
       <Summary user={{ firstName, lastName, email, startDate, endDate }} />
 
       <div style={{ marginTop: '3rem', color: '#272727' }}>
-        Payment Options
+        Payment
         <Select
           name="paymentOption"
           label=""

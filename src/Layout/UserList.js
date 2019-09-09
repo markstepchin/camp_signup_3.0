@@ -49,7 +49,6 @@ const ListHeader = ({ search, setSearch }) => {
         type="text"
         value={search}
         onChange={e => setSearch(e.target.value)}
-        fullWidth
       />
     </div>
   );
