@@ -31,8 +31,8 @@ const Details = () => (
             rel="noopener noreferrer"
             className="address-link"
           >
-            <span style={{ marginRight: '.5rem' }}>Navigate</span>
-            <i className="fas fa-car-alt" />
+            <i className="fas fa-directions" style={{ position: 'relative', top: '1px' }} />
+            <span style={{ marginLeft: '.5rem' }}>Navigate</span>
           </a>
         </div>
       </div>
