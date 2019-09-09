@@ -42,32 +42,49 @@ const UserCard = ({ user, id, firebase }) => (
     </div>
     {user.payed ? (
       <div className="payed">
-        <i className="far fa-check-circle payment-icon" />{' '}payed
+        <i className="far fa-check-circle payment-icon" /> payed
       </div>
     ) : (
       <div className="no-payed">
-        <i className="far fa-times-circle payment-icon" />{' '}didn't pay 
+        <i className="far fa-times-circle payment-icon" /> didn't pay
       </div>
     )}
-
-    <i className="card-registered-time">{moment(user.time).format('H:mm:ss, D/M/YYYY')}</i>
-    <button
-      className="delete-btn"
-      onClick={() => {
-        const confirm = window.confirm(
-          `Are you sure that you want to remove ${user.firstName} ${user.lastName}?`
-        );
-
-        if (confirm) {
-          firebase.deleteUser(id);
-        }
-      }}
-      type="button"
-    >
+    <i className="card-registered-time">{moment(user.time).format('H:mm:ss, D/M')}</i>
+    <i className="card-registered-time">
+      {user.timePayed && <span>payed at: {moment(user.timePayed).format('H:mm:ss, D/M')}</span>}
+    </i>
+    <button className="delete-btn" onClick={() => deleteUser(user, id, firebase)} type="button">
       <i className="fas fa-trash" />
     </button>
+    {!user.payed && (
+      <button
+        className="user-payed-btn"
+        onClick={() => userPayed(user, id, firebase)}
+        type="button"
+      >
+        <i className="fas fa-money-bill-wave" />
+      </button>
+    )}
   </div>
 );
+
+const deleteUser = (user, id, firebase) => {
+  const confirm = window.confirm(
+    `Are you sure that you want to remove ${user.firstName} ${user.lastName}?`
+  );
+
+  if (confirm) {
+    firebase.deleteUser(id);
+  }
+};
+
+const userPayed = (user, id, firebase) => {
+  const confirm = window.confirm(`${user.firstName} ${user.lastName} payed?`);
+
+  if (confirm) {
+    firebase.userPayed(id);
+  }
+};
 
 const formatDate = date => moment(date).format('MMM D');
 

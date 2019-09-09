@@ -42,6 +42,8 @@ class Firebase {
   users = () => this.db.ref('users');
 
   deleteUser = uuid => this.db.ref(`users/${uuid}`).update({ deleted: true });
+
+  userPayed = uuid => this.db.ref(`users/${uuid}`).update({ payed: true, timePayed: Date.now() });
 }
 
 export default Firebase;
