@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
+import TextField from '@material-ui/core/TextField';
 import { withFirebase } from '../components/Firebase';
 
-import TextField from '@material-ui/core/TextField';
+const sortBy = {
+  latest: (key1, key2, users) => users[key2].time - users[key1].time,
+  oldest: (key1, key2, users) => users[key1].time - users[key2].time,
+};
 
 const UserList = ({ firebase }) => {
   const [users, setUsers] = useState();
   const [search, setSearch] = useState('');
+  const [sort, setSort] = useState('latest');
 
   useEffect(() => {
     firebase.readUsers().on('value', snapshot => {
@@ -27,7 +32,8 @@ const UserList = ({ firebase }) => {
           .toLowerCase()
           .trim()
           .includes(search.toLowerCase().trim())
-      );
+      )
+      .sort((key1, key2) => sortBy[sort](key1, key2, users));
 
   return (
     <>
