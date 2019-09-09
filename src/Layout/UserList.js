@@ -22,7 +22,12 @@ const UserList = ({ firebase }) => {
       // only non-deleted users
       .filter(key => !users[key].deleted)
       // only users that match the search
-      .filter(key => `${users[key].firstName} ${users[key].lastName}`.includes(search));
+      .filter(key =>
+        `${users[key].firstName} ${users[key].lastName}`
+          .toLowerCase()
+          .trim()
+          .includes(search.toLowerCase().trim())
+      );
 
   return (
     <>
