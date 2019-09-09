@@ -230,6 +230,22 @@ h3 {
   font-size: 1rem;
 }
 
+.payed {
+  color: #00ab06;
+  margin-top: .125rem;
+}
+
+.no-payed {
+  color: #D50000;
+  margin-top: .125rem;
+}
+
+.payment-icon {
+  font-size: 1.125rem;
+  position: relative;
+  top: 2px;
+}
+
 /*********************** END UserList ***********************/
 
 /*********************** START Media Queries ***********************/

@@ -40,12 +40,23 @@ const UserCard = ({ user, id, firebase }) => (
     <div>
       {formatDate(user.startDate)} - {formatDate(user.endDate)}
     </div>
+    {user.payed ? (
+      <div className="payed">
+        <i className="far fa-check-circle payment-icon" />{' '}payed
+      </div>
+    ) : (
+      <div className="no-payed">
+        <i className="far fa-times-circle payment-icon" />{' '}didn't pay 
+      </div>
+    )}
+
     <i className="card-registered-time">{moment(user.time).format('H:mm:ss, D/M/YYYY')}</i>
-    <div>{user.date}</div>
     <button
       className="delete-btn"
       onClick={() => {
-        const confirm = window.confirm(`Are you sure that you want to remove ${user.firstName} ${user.lastName}?`);
+        const confirm = window.confirm(
+          `Are you sure that you want to remove ${user.firstName} ${user.lastName}?`
+        );
 
         if (confirm) {
           firebase.deleteUser(id);
