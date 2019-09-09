@@ -75,6 +75,26 @@
   margin: 2rem;
   color: rgb(181, 181, 182);
 }
+
+.address-link-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+
+.address-link {
+  background-color: #3f51b5;
+  display: flex;
+  justify-content: space-between;
+
+  padding: .5rem .9rem;
+  text-decoration: none;
+  border-radius: 17px;
+
+  color: #fff;
+  letter-spacing: .7px;
+}
+
 /*********************** END Details Page ***********************/
 
 /*********************** START Checkout Page ***********************/
