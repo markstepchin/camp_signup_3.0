@@ -61,14 +61,46 @@
 /*********************** END Overall App Layout ***********************/
 
 /*********************** START Details Page ***********************/
+.details-container {
+  max-width: 1200px;
+  width: calc(100% - 15rem);
+  margin-left: 7.5rem;
+  margin-right: 7.5rem;
+  margin-bottom: 15rem;
+}
+
 .description {
   padding-top: 0.75rem;
+}
+
+.icon-drawer {
+  margin-top: 7.5rem;
+  display: flex;
 }
 
 .details-section {
   display: flex;
   justify-content: center;
   padding: 2rem 0;
+  flex: 1 1 0;
+}
+
+.address-detail-section {
+  order: 1;
+}
+
+.date-detail-section {
+  order: 0;
+}
+
+.cost-detail-section {
+  order: 1;
+}
+
+.details-title {
+  font-size: 1.25rem;
+  color: #585858;
+  text-align: center;
 }
 
 .detail-icons {
@@ -76,11 +108,6 @@
   font-size: 3rem;
   margin: 2rem;
   color: rgb(181, 181, 182);
-}
-
-.address-title {
-  font-size: 1.5rem;
-  color: #585858;
 }
 
 .address-link {
@@ -206,6 +233,40 @@ h3 {
 /*********************** END UserList ***********************/
 
 /*********************** START Media Queries ***********************/
+
+/* Large tablet: 1023px - 1200px*/
+@media only screen and (max-width: 1200px) {
+  .details-container {
+    width: calc(100% - 10rem);
+    margin-left: 5rem;
+    margin-right: 5rem;
+  }
+}
+
+/* Small tablet to large tablet: 767px - 1070px */
+@media only screen and (max-width: 1070px) {
+  .details-container {
+    width: calc(100% - 2rem);
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .date-detail-section {
+    order: 1;
+  }
+
+  .icon-drawer {
+    margin-top: 3rem;
+    flex-direction: column;
+  }
+}
+
+/* small phones to small tablets: 480px - 767px */
+@media only screen and (max-width: 767px) {
+
+}
+
+/* small phones: 0 - 480px */
 @media only screen and (max-width: 480px) {
   .paper,
   .page-content {
