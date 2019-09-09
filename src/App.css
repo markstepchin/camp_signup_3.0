@@ -260,6 +260,11 @@ h3 {
   top: 2px;
 }
 
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 /*********************** END UserList ***********************/
 
 /*********************** START Media Queries ***********************/

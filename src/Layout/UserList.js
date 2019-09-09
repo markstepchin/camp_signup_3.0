@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { withFirebase } from '../components/Firebase';
 
+import TextField from '@material-ui/core/TextField';
+
 const UserList = ({ firebase }) => {
   const [users, setUsers] = useState();
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     firebase.readUsers().on('value', snapshot => {
@@ -13,11 +16,17 @@ const UserList = ({ firebase }) => {
     return () => firebase.readUsers().off();
   }, []);
 
-  // filtering out deleted users
-  const filteredUsers = users && Object.keys(users).filter(key => !users[key].deleted);
+  const filteredUsers =
+    users &&
+    Object.keys(users)
+      // only non-deleted users
+      .filter(key => !users[key].deleted)
+      // only users that match the search
+      .filter(key => `${users[key].firstName} ${users[key].lastName}`.includes(search));
 
   return (
     <>
+      <ListHeader search={search} setSearch={setSearch} />
       {filteredUsers && filteredUsers.length > 0 ? (
         filteredUsers.map(key => {
           const user = users[key];
@@ -28,6 +37,21 @@ const UserList = ({ firebase }) => {
         <i style={{ color: '#5a5a5a', fontWeight: '300' }}>no registrations yet...</i>
       )}
     </>
+  );
+};
+
+const ListHeader = ({ search, setSearch }) => {
+  return (
+    <div className="filter-container">
+      <TextField
+        name="search"
+        label="Search"
+        type="text"
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+        fullWidth
+      />
+    </div>
   );
 };
 
@@ -62,7 +86,7 @@ const UserCard = ({ user, id, firebase }) => (
         onClick={() => userPayed(user, id, firebase)}
         type="button"
       >
-        <i className="fas fa-money-bill-wave" />
+        <i className="fas fa-money-check-alt" />
       </button>
     )}
   </div>
