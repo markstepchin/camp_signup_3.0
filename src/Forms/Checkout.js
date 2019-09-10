@@ -45,17 +45,17 @@ class Checkout extends React.Component {
     return (
       <div className="container">
         <div className="paper">
-          <Stepper activeStep={activeStep} alternativeLabel>
-            {steps.map(label => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-          <React.Fragment>
-            {activeStep === steps.length ? (
-              <SignUpSuccess registeredUser={registeredUser} />
-            ) : (
+          {activeStep === steps.length ? (
+            <SignUpSuccess registeredUser={registeredUser} />
+          ) : (
+            <>
+              <Stepper activeStep={activeStep} alternativeLabel>
+                {steps.map(label => (
+                  <Step key={label}>
+                    <StepLabel>{label}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
               <Elements>
                 <Form>
                   <Dates visible={activeStep === Steps.DATES} />
@@ -68,8 +68,8 @@ class Checkout extends React.Component {
                   />
                 </Form>
               </Elements>
-            )}
-          </React.Fragment>
+            </>
+          )}
         </div>
       </div>
     );
