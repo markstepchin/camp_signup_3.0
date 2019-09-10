@@ -56,9 +56,7 @@ const App = () => (
           component={() => (
             <Page>
               <LandingHeader />
-              {/* <PageContent> */}
-                <Details />
-              {/* </PageContent> */}
+              <Details />
               <LandingPageFooter />
             </Page>
           )}
