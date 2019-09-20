@@ -149,6 +149,8 @@ class Form extends Component {
   payment = async (startDate, endDate) => {
     const res = await this.props.stripe.createToken({ name: this.state.values.lastName });
     const { token } = res;
+    console.log("res: ", res);
+    console.log("token: ", token);
 
     // on failure
     if (res.error) {
@@ -167,6 +169,8 @@ class Form extends Component {
   };
 
   charge = async (token, amount) => {
+    const { email } = this.state.values;
+    console.log("email: ", email)
     const res = await fetch(FIREBASE_FUNCTION, {
       method: 'POST',
       body: JSON.stringify({
@@ -174,6 +178,7 @@ class Form extends Component {
         charge: {
           amount,
           currency: CURRENCY,
+          email
         },
       }),
     });
