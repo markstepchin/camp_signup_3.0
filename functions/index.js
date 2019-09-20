@@ -13,7 +13,7 @@ const stripe = require('stripe')(functions.config().stripe.token);
 function charge(req, res) {
   const body = JSON.parse(req.body);
   const token = body.token.id;
-  const { amount, currency } = body.charge;
+  const { amount, currency, email } = body.charge;
 
   console.log('body: ', req.body);
 
@@ -23,7 +23,8 @@ function charge(req, res) {
       amount,
       currency,
       description: 'Firebase Example',
-      source: token
+      source: token,
+      receipt_email: email
     })
     .then(createdCharge =>
       send(res, 200, {
