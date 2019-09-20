@@ -22,7 +22,7 @@ function charge(req, res) {
     .create({
       amount,
       currency,
-      description: 'Firebase Example',
+      description: 'PNW Youth Camp 2019',
       source: token,
       receipt_email: email
     })
