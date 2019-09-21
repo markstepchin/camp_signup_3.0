@@ -52,7 +52,7 @@ const Summary = ({ user: { firstName, lastName, email, startDate, endDate } }) =
       </span>
       <span style={{ color: 'rgb(69, 67, 67)' }}>{calcNumDays(startDate, endDate)} days</span>
     </div>
-    <div
+    {/* <div
       style={{
         display: 'flex',
         justifyContent: 'space-between',
@@ -63,7 +63,7 @@ const Summary = ({ user: { firstName, lastName, email, startDate, endDate } }) =
     >
       <i style={{ color: '#454343', fontSize: '.75rem' }}>cost/day</i>
       <i style={{ color: '#454343', fontSize: '.75rem' }}>${COST_PER_DAY}</i>
-    </div>
+    </div> */}
 
     <div
       style={{

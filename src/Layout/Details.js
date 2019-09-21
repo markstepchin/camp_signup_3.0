@@ -12,8 +12,12 @@ const Details = () => (
   <div className="details-container">
     <CssBaseline />
     <div className="description">
-      <h3>{HEADING}</h3>
-      <p>{DESCRIPTION}</p>
+      <h3>What are you searching for?</h3>
+      <p>We'd like to invite the youth of the PNW region to our youth camp. The main topic of the camp will be "What are you searching for?" with a speaker coming in from Russian named Бочкала С. Looking forward to seeing you all there!</p>
+    </div>
+    <div className="description">
+      <h3>Чего ищешь ты?</h3>
+      <p>Сердечно приглашаем молодеж северо-заподного обедения на наш зимний лагерь. В гостях будет брат Бочкала С. из России. Ждём всех!</p>
     </div>
     <div className="icon-drawer">
       <div className="details-section address-detail-section">
@@ -42,8 +46,13 @@ const Details = () => (
             <span className="far fa-calendar-alt" />
           </div>
           <div className="details-title">
-            {startDate.format('MMMM')} {startDate.date()}-{endDate.date()}
+            {startDate.format('MMM')} {startDate.date()} - {endDate.format('MMM')} {endDate.date()}
           </div>
+          <div style={{ textAlign: 'center' }}>
+            <span style={{ display: 'inline-block', marginTop: '.5rem' }}>Arrival begins Oct 31 at 4:00pm - Nov 1</span>
+            <br />
+            <span style={{ display: 'inline-block', marginTop: '.25rem' }}>Arrival on Nov 2 isn't allowed</span>
+          </div>   
         </div>
       </div>
       <div className="details-section cost-detail-section">
@@ -55,7 +64,7 @@ const Details = () => (
             Total: ${calcCost(START_DATE, END_DATE)}
           </span>
           <br />
-          <i>(or ${COST_PER_DAY} per day)</i>
+          <i>(regardless of arrival and departure days)</i>
         </div>
       </div>
     </div>
