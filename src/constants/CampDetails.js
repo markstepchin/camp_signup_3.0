@@ -1,4 +1,4 @@
-export const NAME = 'PNW Youth Camp 2019';
+export const NAME = 'PNW Youth Camp';
 export const HEADING = 'Most fun camp of the year!';
 export const DESCRIPTION = 'Short description about how amazing this camp will be...';
 
