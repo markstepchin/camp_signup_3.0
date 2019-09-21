@@ -12,12 +12,12 @@ const Details = () => (
   <div className="details-container">
     <CssBaseline />
     <div className="description">
-      <h3>What are you searching for?</h3>
-      <p>We'd like to invite the youth of the PNW region to our youth camp. The main topic of the camp will be "What are you searching for?" with a speaker coming in from Russia named Бочкала С. Looking forward to seeing you all there!</p>
+      <h3>Camp theme: What are you searching for?</h3>
+      <p>We'd like to invite the youth of the PNW region to our winter youth camp. A guest speaker will be coming in from Russia named Бочкала С. Looking forward to seeing you all there!</p>
     </div>
     <div className="description">
-      <h3>Чего ищешь ты?</h3>
-      <p>Сердечно приглашаем молодеж северо-заподного обедения на наш зимний лагерь. В гостях будет брат Бочкала С. из России. Ждём всех!</p>
+      <h3>Тема лагеря: Чего ищешь ты?</h3>
+      <p>Сердечно приглашаем молодежь северо-западного объединения на наш зимний лагерь. В гостях будет брат Бочкала С. из России. Ждём всех!</p>
     </div>
     <div className="icon-drawer">
       <div className="details-section address-detail-section">

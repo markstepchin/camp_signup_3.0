@@ -8,9 +8,10 @@ const SignUpSuccess = ({ registeredUser: { startDate, endDate, firstName, lastNa
   <React.Fragment>
     <div className="form-spacer">
       <Typography variant="h5" gutterBottom>
-        Thanks {firstName} {lastName}!
+        Thanks for registering!{firstName} {lastName}!
       </Typography>
-      <Summary user={{ startDate, endDate, firstName, lastName, email }} />
+      An email with your registration details has been sent to {email}
+      {/* <Summary user={{ startDate, endDate, firstName, lastName, email }} /> */}
     </div>
     <div className="button-container">
       <Link to="/" style={{ textDecoration: 'none' }}>
