@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { Input } from './Input';
+import { Input, RadioButtons } from './Input';
 
 const PersonalDetails = ({ visible }) =>
   visible ? (
@@ -12,6 +12,7 @@ const PersonalDetails = ({ visible }) =>
       <Input name="lastName" label="Last Name *" type="text" />
       <Input name="city" label="City *" type="text" />
       <Input name="email" label="Email *" type="email" />
+      <RadioButtons name="churchMember" label="Are you a church member?"/>
     </form>
   ) : null;
 
