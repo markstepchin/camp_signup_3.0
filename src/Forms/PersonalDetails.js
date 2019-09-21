@@ -10,6 +10,7 @@ const PersonalDetails = ({ visible }) =>
       </Typography>
       <Input name="firstName" label="First Name *" type="text" />
       <Input name="lastName" label="Last Name *" type="text" />
+      <Input name="city" label="City *" type="text" />
       <Input name="email" label="Email *" type="email" />
     </form>
   ) : null;

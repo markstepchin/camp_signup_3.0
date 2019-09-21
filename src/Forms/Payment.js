@@ -7,14 +7,14 @@ import Summary from '../Layout/Summary';
 const Payment = ({ visible }) => {
   const {
     data: {
-      values: { firstName, lastName, email, startDate, endDate, paymentOption },
+      values: { firstName, lastName, city, email, startDate, endDate, paymentOption },
       errors: { creditCard },
     },
   } = useContext(FormContext);
 
   return visible ? (
     <form className="form-spacer">
-      <Summary user={{ firstName, lastName, email, startDate, endDate }} />
+      <Summary user={{ firstName, lastName, city, email, startDate, endDate }} />
 
       <div style={{ marginTop: '3rem', color: '#272727' }}>
         Payment

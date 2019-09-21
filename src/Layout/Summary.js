@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import { calcNumDays, calcCost } from '../Utils';
 import { COST_PER_DAY } from '../constants/Price';
 
-const Summary = ({ user: { firstName, lastName, email, startDate, endDate } }) => (
+const Summary = ({ user: { firstName, lastName, city, email, startDate, endDate } }) => (
   <>
     <Typography variant="h6" gutterBottom>
       Summary
@@ -23,6 +23,22 @@ const Summary = ({ user: { firstName, lastName, email, startDate, endDate } }) =
       <br />
       <span>
         {firstName} {lastName}
+      </span>
+    </div>
+    <div style={{ marginBottom: '.35rem' }}>
+      <span
+        style={{
+          fontWeight: '400',
+          fontSize: '.65rem',
+          color: '#454343',
+          textTransform: 'uppercase',
+        }}
+      >
+        City
+      </span>
+      <br />
+      <span>
+        {city}
       </span>
     </div>
     <div

@@ -71,6 +71,7 @@ const UserCard = ({ user, id, firebase }) => (
       {user.firstName} {user.lastName}
     </div>
     <div className="card-email">{user.email}</div>
+    <div className="card-email">City: {user.city}</div>
     <div>
       {formatDate(user.startDate)} - {formatDate(user.endDate)}
     </div>

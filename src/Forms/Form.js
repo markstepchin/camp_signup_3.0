@@ -38,6 +38,7 @@ class Form extends Component {
       endDate: END_DATE,
       firstName: '',
       lastName: '',
+      city: '',
       email: '',
       adminEmail: 'admin@email.com',
       password: 'password123',
@@ -56,6 +57,9 @@ class Form extends Component {
       lastName: {
         required: true,
       },
+      city: {
+        required: true,
+      },
       email: {
         required: true,
         pattern: emailRegex,
@@ -70,8 +74,8 @@ class Form extends Component {
   };
 
   get isValid() {
-    const values = Object.values(pick(this.state.values, ['firstName', 'lastName', 'email']));
-    const errors = Object.values(pick(this.state.errors, ['firstName', 'lastName', 'email']));
+    const values = Object.values(pick(this.state.values, ['firstName', 'lastName', 'email', 'city']));
+    const errors = Object.values(pick(this.state.errors, ['firstName', 'lastName', 'email', 'city']));
 
     return values.every(value => value) && errors.every(error => !error);
   }
@@ -113,7 +117,7 @@ class Form extends Component {
   handleBlur = ({ target: { name } }) => this.validateField(name);
 
   handleRegistration = async handleNext => {
-    const { startDate, endDate, firstName, lastName, email, paymentOption } = this.state.values;
+    const { startDate, endDate, firstName, lastName, city, email, paymentOption } = this.state.values;
 
     if (paymentOption === 'payNow') {
       const successfullPayment = this.payment(startDate, endDate);
@@ -131,6 +135,7 @@ class Form extends Component {
         endDate,
         firstName,
         lastName,
+        city,
         email,
         time: Date.now(),
         deleted: false,
