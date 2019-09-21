@@ -13,7 +13,7 @@ const Details = () => (
     <CssBaseline />
     <div className="description">
       <h3>What are you searching for?</h3>
-      <p>We'd like to invite the youth of the PNW region to our youth camp. The main topic of the camp will be "What are you searching for?" with a speaker coming in from Russian named Бочкала С. Looking forward to seeing you all there!</p>
+      <p>We'd like to invite the youth of the PNW region to our youth camp. The main topic of the camp will be "What are you searching for?" with a speaker coming in from Russia named Бочкала С. Looking forward to seeing you all there!</p>
     </div>
     <div className="description">
       <h3>Чего ищешь ты?</h3>
