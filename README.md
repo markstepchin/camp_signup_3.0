@@ -1,5 +1,5 @@
  ## Camp Signup App
-Check out the live app [here](https://flamboyant-snyder-919255.netlify.com/)!
+Check out the live app [here](https://gsbcspokane.com/)!
 
 This app allows users to register for an event. It also allows an admin to view all logged in users. The goal was to create a simple, uncluttered, and minimalistic app that got the job done efficiently.
 
