@@ -85,8 +85,9 @@ const UserCard = ({ user, id, firebase }) => (
     <div className="card-email">{user.email}</div>
     <div style={{ margin: 0 }}>City: {user.city}</div>
     <div style={{ marginBottom: '1rem' }}>Church Member: {user.churchMember}</div>
-    <div>
-      {formatDate(user.startDate)} - {formatDate(user.endDate)}
+    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+      <span>{formatDate(user.startDate)} - {formatDate(user.endDate)}</span>
+      <i className="card-registered-time">{moment(user.time).format('H:mm:ss, D/M')}</i>
     </div>
     {/* {user.payed ? (
       <div className="payed">
@@ -97,7 +98,6 @@ const UserCard = ({ user, id, firebase }) => (
         <i className="far fa-times-circle payment-icon" /> didn't pay
       </div>
     )} */}
-    <i className="card-registered-time">{moment(user.time).format('H:mm:ss, D/M')}</i>
     <i className="card-registered-time">
       {user.timePayed && <span>payed at: {moment(user.timePayed).format('H:mm:ss, D/M')}</span>}
     </i>
