@@ -108,7 +108,8 @@ const NavigationButtons = ({ activeStep, handleBack, handleNext }) => {
         style={{ marginLeft: '.5rem' }}
         disabled={
           (activeStep === Steps.PERSONAL && !isValid) ||
-          (activeStep === Steps.PAYMENT && !paymentOptionSelected)
+          // (activeStep === Steps.PAYMENT && !paymentOptionSelected)
+          (activeStep === Steps.PAYMENT && false)
         }
       >
         {activeStep === Steps.PAYMENT ? submitText : 'Next'}

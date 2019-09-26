@@ -16,7 +16,7 @@ const Payment = ({ visible }) => {
     <form className="form-spacer">
       <Summary user={{ firstName, lastName, city, churchMember, email, startDate, endDate }} />
 
-      <div style={{ marginTop: '3rem', color: '#272727' }}>
+      {/* <div style={{ marginTop: '3rem', color: '#272727' }}>
         Payment
         <Select
           name="paymentOption"
@@ -35,7 +35,7 @@ const Payment = ({ visible }) => {
           </div>
           <p className="error-text">{creditCard}</p>
         </>
-      )}
+      )} */}
     </form>
   ) : null;
 };
