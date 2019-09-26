@@ -37,7 +37,11 @@ const UserList = ({ firebase }) => {
 
   return (
     <>
-      <ListHeader search={search} setSearch={setSearch} />
+      <ListHeader
+        search={search}
+        setSearch={setSearch}
+        numRegistered={filteredUsers ? filteredUsers.length : 0}
+      />
       {filteredUsers && filteredUsers.length > 0 ? (
         filteredUsers.map(key => {
           const user = users[key];
@@ -51,7 +55,7 @@ const UserList = ({ firebase }) => {
   );
 };
 
-const ListHeader = ({ search, setSearch }) => {
+const ListHeader = ({ search, setSearch, numRegistered }) => {
   return (
     <div className="filter-container">
       <TextField
@@ -61,6 +65,10 @@ const ListHeader = ({ search, setSearch }) => {
         value={search}
         onChange={e => setSearch(e.target.value)}
       />
+      <div className="total-registered-container">
+        <span className="total-registered-label">total</span>
+        <span className="total-registered">{numRegistered}</span>
+      </div>
     </div>
   );
 };
@@ -72,7 +80,7 @@ const UserCard = ({ user, id, firebase }) => (
     </div>
     <div className="card-email">{user.email}</div>
     <div style={{ margin: 0 }}>City: {user.city}</div>
-    <div style={{ marginBottom: "1rem" }}>Church Member: {user.churchMember}</div>
+    <div style={{ marginBottom: '1rem' }}>Church Member: {user.churchMember}</div>
     <div>
       {formatDate(user.startDate)} - {formatDate(user.endDate)}
     </div>

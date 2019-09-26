@@ -18,7 +18,7 @@ export const LandingHeader = () => (
 
 export const DashboardHeader = () => (
   <div className="header">
-    <h2>{NAME}</h2>
+    <h2>Admin</h2>
     <SignOutButton />
   </div>
 );

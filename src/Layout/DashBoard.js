@@ -5,7 +5,7 @@ import UserList from './UserList';
 const DashBoard = () => {
   return (
     <>
-      <h1>Registered Users</h1>
+      <h1 style={{ fontWeight: 500 }}>Registered Users</h1>
       <UserList />
     </>
   );

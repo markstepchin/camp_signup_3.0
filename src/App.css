@@ -116,12 +116,12 @@
   justify-content: space-between;
 
   margin-top: 1rem;
-  padding: .5rem .9rem;
+  padding: 0.5rem 0.9rem;
   text-decoration: none;
   border-radius: 17px;
 
   color: #fff;
-  letter-spacing: .7px;
+  letter-spacing: 0.7px;
 }
 
 /*********************** END Details Page ***********************/
@@ -214,26 +214,26 @@ h3 {
 .card-registered-time {
   display: flex;
   justify-content: flex-end;
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: #7b7b7b;
 }
 
 .delete-btn {
   position: absolute;
-  top: .5rem;
+  top: 0.5rem;
   right: 0rem;
   padding: 1rem;
 
   border: none;
   background: transparent;
-  color: #D50000;
+  color: #d50000;
   font-size: 1rem;
   cursor: pointer;
 }
 
 .user-payed-btn {
   position: absolute;
-  top: .5rem;
+  top: 0.5rem;
   right: 3rem;
   padding: 1rem;
 
@@ -246,12 +246,12 @@ h3 {
 
 .payed {
   color: #00ab06;
-  margin-top: .125rem;
+  margin-top: 0.125rem;
 }
 
 .no-payed {
-  color: #D50000;
-  margin-top: .125rem;
+  color: #d50000;
+  margin-top: 0.125rem;
 }
 
 .payment-icon {
@@ -263,6 +263,24 @@ h3 {
 .filter-container {
   display: flex;
   justify-content: space-between;
+  /* align-items: baseline; */
+}
+
+.total-registered-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.total-registered-label {
+  line-height: 0.5rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  margin-right: 1rem;
+}
+
+.total-registered {
+  font-size: 2rem;
+  color: rgb(34, 53, 158);
 }
 
 /*********************** END UserList ***********************/
@@ -298,7 +316,6 @@ h3 {
 
 /* small phones to small tablets: 480px - 767px */
 @media only screen and (max-width: 767px) {
-
 }
 
 /* small phones: 0 - 480px */
@@ -309,7 +326,7 @@ h3 {
   }
 
   .card {
-    width: 100%
+    width: 100%;
   }
 }
 /*********************** END Media Queries ***********************/
