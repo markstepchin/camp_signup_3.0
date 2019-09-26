@@ -58,7 +58,7 @@ const UserList = ({ firebase }) => {
 const ListHeader = ({ search, setSearch, numRegistered }) => {
   return (
     <div className="filter-container">
-      <div style={{ marginRight: "1.5rem", width: "100%" }}>
+      <div style={{ marginRight: "1.5rem", marginLeft: ".25rem", width: "100%" }}>
         <TextField
           name="search"
           label="Search"
