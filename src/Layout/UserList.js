@@ -76,7 +76,7 @@ const UserCard = ({ user, id, firebase }) => (
     <div>
       {formatDate(user.startDate)} - {formatDate(user.endDate)}
     </div>
-    {user.payed ? (
+    {/* {user.payed ? (
       <div className="payed">
         <i className="far fa-check-circle payment-icon" /> payed
       </div>
@@ -84,7 +84,7 @@ const UserCard = ({ user, id, firebase }) => (
       <div className="no-payed">
         <i className="far fa-times-circle payment-icon" /> didn't pay
       </div>
-    )}
+    )} */}
     <i className="card-registered-time">{moment(user.time).format('H:mm:ss, D/M')}</i>
     <i className="card-registered-time">
       {user.timePayed && <span>payed at: {moment(user.timePayed).format('H:mm:ss, D/M')}</span>}
@@ -92,7 +92,7 @@ const UserCard = ({ user, id, firebase }) => (
     <button className="delete-btn" onClick={() => deleteUser(user, id, firebase)} type="button">
       <i className="fas fa-trash" />
     </button>
-    {!user.payed && (
+    {/* {!user.payed && (
       <button
         className="user-payed-btn"
         onClick={() => userPayed(user, id, firebase)}
@@ -100,7 +100,7 @@ const UserCard = ({ user, id, firebase }) => (
       >
         <i className="fas fa-money-check-alt" />
       </button>
-    )}
+    )} */}
   </div>
 );
 
