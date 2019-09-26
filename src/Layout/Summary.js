@@ -80,7 +80,7 @@ const Summary = ({ user: { firstName, lastName, city, churchMember, email, start
 
     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
       <span>
-        July {getDay(startDate)}-{getDay(endDate)}
+        {moment(startDate).format("MMM D")} - {moment(endDate).format("MMM D")}
       </span>
       <span style={{ color: 'rgb(69, 67, 67)' }}>{calcNumDays(startDate, endDate)} days</span>
     </div>
