@@ -58,13 +58,17 @@ const UserList = ({ firebase }) => {
 const ListHeader = ({ search, setSearch, numRegistered }) => {
   return (
     <div className="filter-container">
-      <TextField
-        name="search"
-        label="Search"
-        type="text"
-        value={search}
-        onChange={e => setSearch(e.target.value)}
-      />
+      <div style={{ marginRight: "1.5rem", width: "100%" }}>
+        <TextField
+          name="search"
+          label="Search"
+          type="text"
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          fullWidth
+        />
+      </div>
+
       <div className="total-registered-container">
         <span className="total-registered-label">total</span>
         <span className="total-registered">{numRegistered}</span>
