@@ -41,8 +41,8 @@ class Form extends Component {
       city: '',
       churchMember: '',
       email: '',
-      adminEmail: 'admin@email.com',
-      password: 'password123',
+      adminEmail: '',
+      password: '',
       paymentOption: '',
     },
     errors: {
