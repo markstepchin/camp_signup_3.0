@@ -13,6 +13,7 @@ export const LandingHeader = () => (
         Sign Up!
       </Button>
     </Link> */}
+    <span style={{ color: "#d50000", fontSize: "1rem", textAlign: "center" }}>REGISTRATION<br/>CLOSED</span>
   </div>
 );
 
