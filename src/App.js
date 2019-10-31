@@ -16,7 +16,7 @@ const App = () => (
   <Router>
     <ScrollToTop>
       <Switch>
-        <Route
+        {/* <Route
           path={CHECKOUT}
           component={() => (
             <Page>
@@ -26,7 +26,7 @@ const App = () => (
               <EmptyFooter />
             </Page>
           )}
-        />
+        /> */}
         <Route
           path={SIGN_IN}
           component={() => (
